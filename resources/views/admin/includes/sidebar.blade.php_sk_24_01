@@ -1,0 +1,153 @@
+ <aside class="main-sidebar">
+    <section class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{asset('admin/defaultUser.png')}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Alexander Pierce</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+    		<li class="active"> <a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard text-aqua"></i> <span>Dashboard</span></a></li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-users"></i> <span>Users</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+      				<!-- <li><a href="{{route('admin.agent')}}"><i class="fa  fa-plus-circle"></i>Add Agents</a></li> -->
+      				<li><a href="{{route('admin.agents')}}"><i class="fa  fa-list"></i>Agents</a></li>
+      				<!-- <li><a href="{{route('admin.sellerbuyer')}}"><i class="fa  fa-plus-circle"></i>Add Buyers/Sellers</a></li> -->
+      				<li><a href="{{route('admin.sellerbuyers')}}"><i class="fa  fa-list-ol"></i>Buyers/Sellers</a></li>
+            </ul>
+          </li>
+          
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-newspaper-o"></i> <span>Posts</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{route('admin.getpost')}}"><i class="fa fa-list-ol"></i> Posts List</a></li>
+            </ul>
+          </li>
+
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-question"></i> <span>Questions</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{route('admin.QuestionAnswers')}}"><i class="fa fa-plus-circle"></i> Questions Add</a></li>
+              <li><a href="{{route('admin.getQuestionAnswers')}}"><i class="fa fa-list-ol"></i> Questions List</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-question"></i> <span>Securty Questions</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{route('admin.securtyquestionaddedit')}}"><i class="fa fa-plus-circle"></i> Securty Questions Add</a></li>
+              <li><a href="{{route('admin.getsecurtyquestion')}}"><i class="fa fa-list-ol"></i> Securty Questions List</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="ion ion-university"></i> <span>Skills & Specialization</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{route('admin.specialization')}}"><i class="fa fa-plus-circle"></i>Skills Add</a></li>
+              <li><a href="{{route('admin.specializations')}}"><i class="fa fa-list-ol"></i>Skills List</a></li> 
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cubes"></i> <span>Franchisees</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+           <li><a href="{{route('admin.Franchisee')}}"><i class="fa fa-plus-circle"></i> Add Franchisees</a></li>
+           <li><a href="{{route('admin.Franchisees')}}"><i class="fa fa-list-ol"></i> Franchisees list</a></li>
+            </ul>
+          </li>
+  		    <li class="treeview">
+            <a href="#">
+              <i class="ino ion-ribbon-b"></i> <span>Certifications</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+  				 <li><a href="{{route('admin.certificationsaddedit')}}"><i class="fa fa-plus-circle"></i> Add Certifications</a></li>
+  				 <li><a href="{{route('admin.certifications')}}"><i class="fa fa-list-ol"></i> Certifications list</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="ion ion-android-pin"></i> <span>Cities</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+           <li><a href="{{route('admin.city')}}"><i class="fa fa-plus-circle"></i> Add Cities</a></li>
+            <li><a href="{{route('admin.cities')}}"><i class="fa fa-list-ol"></i> Cities</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="ion ion-android-pin"></i> <span>States</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+           <li><a href="{{route('admin.state')}}"><i class="fa fa-plus-circle"></i> Add States</a></li>
+           <li><a href="{{route('admin.states')}}"><i class="fa fa-list-ol"></i> States</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="ion ion-android-pin"></i> <span>Areas</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+           <li><a href="{{route('admin.area')}}"><i class="fa fa-plus-circle"></i> Add Areas</a></li>
+           <li><a href="{{route('admin.areas')}}"><i class="fa fa-list-ol"></i> Areas</a></li>
+            </ul>
+          </li>
+			<li class="treeview">
+				<a href="#">
+					<i class="ion ion-android-pin"></i> <span>Notification</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{route('admin.getnotification')}}"><i class="fa fa-list-ol"></i>Notification Settings</a></li>
+				</ul>
+			</li>
+      </ul>
+    </section>
+  </aside>
