@@ -162,8 +162,9 @@ class LoginController extends Controller
                     $userupdate->agents_users_role_id    =    $input_arr['agents_users_role_id'];
                     $userupdate->login_status            =     'Online';
                     $userupdate->updated_at            =     Carbon::now()->toDateTimeString();
+                    $userupdate->fcm_token            =     $request->filled('fcm_token') ? $request->fcm_token : NULL;
                     $userupdate->save();
-                    return response()->json(["success" => "success"]);
+                    return response()->json(["success" => "success", 'data' => $userupdate->toArray()]);
                 endif;
                 // return redirect()->back()->withInput($request->only('email', 'remember'));
             }
