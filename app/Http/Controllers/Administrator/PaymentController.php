@@ -352,10 +352,6 @@ class PaymentController extends Controller
             $user =  Auth::user();
             $userdetails = Userdetails::find($user->id);
 
-            /*	echo "<pre>";
-				print_r($sell_details);
-				exit;
-*/
             if ($sell_details) {
 
                 try {

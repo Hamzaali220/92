@@ -850,10 +850,9 @@ class ProfileController extends Controller
                     'as.receipt_url', 
                     'as.sale_date', 
                     'as.sale_price',
-                    'ap.closing_date',
                     'ap.posttitle'
                 )
-                ->where(['as.agent_id' => $user->id, 'as.status' => 1])
+                ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
                 ->get();
 
             $view['invoice_details'] = $invoice_details;
