@@ -163,6 +163,7 @@ class LoginController extends Controller
                     $userupdate->login_status            =     'Online';
                     $userupdate->updated_at            =     Carbon::now()->toDateTimeString();
                     $userupdate->fcm_token            =     $request->filled('fcm_token') ? $request->fcm_token : NULL;
+                    $userupdate->device_type            =     $request->filled('device_type') ? $request->device_type : NULL;
                     $userupdate->save();
                     return response()->json(["success" => "success", 'data' => $userupdate->toArray()]);
                 endif;

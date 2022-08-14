@@ -58,7 +58,13 @@ Route::group(['middleware' => ['lang', 'guest']], function () {
 	Route::get('/login', ['as' => 'login', 'uses' => 'Front\HomeController@login']);
 	Route::post('/login', 'Auth\LoginController@login');
 	Route::post('/login_api', 'Auth\LoginController@login_api');
+	
+	/* Mobile */
 	Route::post('/mobile/login_api', 'Auth\LoginController@login_api');
+	Route::post('/mobile/signup1', 'Front\HomeController@signup');
+	Route::post('/mobile/signup2', 'Front\HomeController@signup2');
+	Route::post('/mobile/signup3', 'Front\HomeController@signup3');
+	Route::any('/get_state', 'Administrator\ProfileController@state');
 
 	/*Registration Routes...*/
 	Route::post('/signup1', 'Front\HomeController@signup')->name('signup');
