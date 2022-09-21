@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 	Route::any('/switchuser', 'Administrator\Search\BuyerSearchController@switchuser');
 	Route::any('/search/post/list/{limit}', 'Administrator\Search\BuyerSearchController@postlist');
 	Route::any('/search/post/details/{id}', 'Administrator\Search\BuyerSearchController@postdetails');
+	Route::post('/selldetails',  'Administrator\Buyer\PostController@selldetails');
 
 	Route::any('/search/post/details/{id}/{notitype}', 'Administrator\Search\BuyerSearchController@postdetails');
 	Route::any('/search/buyer/details/{id}/{roleid}', 'Administrator\Search\BuyerSearchController@buyerdetails');
@@ -113,7 +114,7 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 	/* Dashboard*/
-	Route::get('/dashboard', 'Administrator\DashboardController@index');
+	Route::get('/dashboard', 'Administrator\DashboardController@index')->name('dashboard');
 	/*last activity*/
 
 	/* Agent profile*/
@@ -293,7 +294,7 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 
 	/*applied post and agents */
 	Route::get('/{name}/applied/post', 'Administrator\ProfileController@AppliedPostForAgents');
-	Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
+Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 	Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}/{selected}/{user_role_id?}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 
 	/* connected jobs/post for agents*/

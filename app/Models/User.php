@@ -201,8 +201,8 @@ class User extends Authenticatable
 
     /* For users connection process */
     public function usersconection($where = null)
-
     {
+        
 
         $query1 = DB::table('agents_users_conections')->select('*');
 

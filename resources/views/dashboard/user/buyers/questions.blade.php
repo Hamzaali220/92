@@ -437,7 +437,8 @@
 					if(typeof result.msg !='undefined' && result.msg !=null){	
 						esmsg.text('').addClass('hide');
 						$('.q-s-'+question_id).text(question);
-						msgshowfewsecond('"'+question+'" question has been updated successfuly.');
+						// msgshowfewsecond('"'+question+'" question has been updated successfuly.');
+						msgshowfewsecond('Question has been updated successfuly.');
 						$('.accordion-toggle').addClass('collapsed');
 						$('.panel-collapse').removeClass('in');
 					}

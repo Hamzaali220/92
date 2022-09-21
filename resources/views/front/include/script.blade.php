@@ -573,7 +573,6 @@ $('#nesusersignup').on('hidden.bs.modal', function () {
 		    		$('#gcap_login_btn').prop("disabled", false);
 		    		$('#gcap_login_btn').removeClass("disabled");
 		    		grecaptcha.reset();
-
 		    		$('.error-text').addClass('hide').text('');
 		    		$(".body-overlay").removeClass('show').addClass('hide');
 		    		if(data.status=='500'){
@@ -773,5 +772,19 @@ $('#nesusersignup').on('hidden.bs.modal', function () {
         $('#logineuser').trigger('reset');
     });
 </script>
+<script>
+    var total = $('.carousel-item').length;
+    var currentIndex = $('div.active').index() + 1;
+    $('#slidetext').html(currentIndex + '/' + total);
+
+    // This triggers after each slide change
+    $('.carousel').on('slid.bs.carousel', function () {
+      currentIndex = $('div.active').index() + 1;
+
+      // Now display this wherever you want
+      var text = currentIndex + '/' + total;
+      $('#slidetext').html(text);
+    });
+  </script>
 
 @yield('script')

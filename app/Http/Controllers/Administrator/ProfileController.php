@@ -818,7 +818,32 @@ class ProfileController extends Controller
     public function publicConnection(Request $request)
     {
         $uss = new User;
+        $agent = new User;
+        $seller = new User;
+        $post = new Post;
+        // $agentDetails = $agent->getuserdetailsByAny(array('agents_users_details.details_id' =>  $request->input('from_id')));
+        $sellerDetails = $seller->getuserdetailsByAny(array('agents_users_details.details_id' =>  $request->input('to_id')));
+        $postDetails = $post->getpostsingalByAny(array('is_deleted' => '0', 'agents_user_id' => $request->input('to_id')));
+        if($postDetails->address1 !== NULL){
+            $postDetails=$postDetails->address1;
+        }
+        else{
+            $postDetails='';
+        }
         $uss->usersconection(array('post_id' => $request->input('post_id'), 'to_id' => $request->input('to_id'), 'to_role' => $request->input('to_role'), 'from_id' => $request->input('from_id'), 'from_role' => $request->input('from_role')));
+        $agent_comission = 3;
+        $comission_92agent = 1;
+        $insert_arr = array(
+            'sellers_name' => $sellerDetails->name,
+            'address' => $postDetails,
+            'post_id' => $request->input('post_id'),
+            'agent_id' => $request->input('from_id'),
+            'agent_comission' => $agent_comission,
+            'comission_92agent' => $comission_92agent,
+        );
+
+        DB::table('agents_selldetails')->insertGetId($insert_arr);
+    
     }
 
     /* For get public user */
@@ -865,7 +890,7 @@ class ProfileController extends Controller
     /* For connected jobs for agents */
     public function ConnectedJobsForAgents()
     {
-
+        
         if (Auth::user()) {
             $view = array();
             $view['user'] = $user = Auth::user();

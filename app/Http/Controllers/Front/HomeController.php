@@ -239,6 +239,7 @@ class HomeController extends Controller {
 
 	/*signup step 1*/
 	public function signup(Request $request){
+		
 
 		$postStep = $request->input('step');
 		$roleId = $request->input('agents_users_role_id');
@@ -267,7 +268,7 @@ class HomeController extends Controller {
 			$userExits = $user->getDetailsByEmailOrId( array( 'email'=> $request->input('email') ) );
 
 			if(empty($userExits)){
-
+				
 				$activation_link = uniqid();
 				$user 						= new User;
 				$user->agents_users_role_id = $roleId;
@@ -277,7 +278,7 @@ class HomeController extends Controller {
                 $user->activation_link 		= $activation_link;
                 $user->api_token=Hash::make((string) time());
 				$user->save();
-
+				
 				$details  				=	 array();
 				$details['details_id']	=	$user->id;
 				$details['name']		=	$request->input('fname').' '.$request->input('lname');
@@ -391,15 +392,15 @@ class HomeController extends Controller {
 			   	$validator = Validator::make($request->all(),$rules, $messages);
 
 			   	if( $validator->fails()):
-
+					dd('fails mw=e hn');
 				   return response()->json([ 'error' => $validator->errors() ]);
 
 			   	else:
 				   	$post =  new Post;
 				   	$postdetails = $post->getDetailsByUserroleandId($user_id,$roleId);
-
+					  
 					if(empty($postdetails)){
-
+						
 						$postdetailsnew	=	array();
 						$postdetailsnew['agents_user_id']		=	$user_id;
 						$postdetailsnew['agents_users_role_id']	=	$roleId;
@@ -408,7 +409,7 @@ class HomeController extends Controller {
 						$postdetailsnew['created_at']			= 	Carbon::now()->toDateTimeString();
 						DB::table('agents_posts')->insertGetId($postdetailsnew);
 					}else{
-
+						dd('new post if main hn');
 						$postdetails = Post::find($postdetails->post_id);
 						$postdetails->agents_user_id 		=	$user_id;
 						$postdetails->agents_users_role_id 	=	$roleId;

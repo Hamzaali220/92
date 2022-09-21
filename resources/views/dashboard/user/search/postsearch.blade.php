@@ -54,7 +54,7 @@
 
 										<ul class="dropdown-menu" role="menu">
 
-											<li class="cursor border1-bottom searchlist {{ @$search_post['searchinputtype'] && $search_post['searchinputtype']=='name' ? 'active' : '' }} name"><a class="padding-5-20 " onclick="changesearchinput('name');">Name</a></li>
+											<li class="cursor border1-bottom searchlist {{ @$search_post['searchinputtype'] && $search_post['searchinputtype']=='name' ? 'active' : '' }} name"><a class="padding-5-20" onclick="changesearchinput('name');">Name</a></li>
 
 											<li class="cursor border1-bottom searchlist {{ @$search_post['searchinputtype'] && $search_post['searchinputtype']=='messages' ? 'active' : '' }} messages"><a class="padding-5-20 " onclick="changesearchinput('messages');">Messages</a></li>
 

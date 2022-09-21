@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/img/fav.png') }}">
-
     <!-- Google Fonts -->
  	@include('front.include.style')
    <script src="https://www.google.com/recaptcha/api.js" async defer></script>

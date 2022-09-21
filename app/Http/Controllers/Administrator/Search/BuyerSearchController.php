@@ -35,7 +35,7 @@ class BuyerSearchController extends Controller
             $view['userdetails'] = $userdetails = Userdetails::find($user->id);
             $view['city']        = $state->getCityByAny(array('is_deleted' => '0'));
             $view['state']       = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
-            $view['search_post'] = Session::has('search_post') ? Session::get('search_post') : '';
+            $view['search_post'] = Session::has('search_post') ? Session::get('search_post') : [];
             return view('dashboard.user.search.postsearch', $view);
         } else {
             // $view['search_post'] = Session::has('search_post') ? Session::get('search_post') : '';
@@ -131,20 +131,20 @@ class BuyerSearchController extends Controller
             $view['post'] = $post->getDetailsBypostid(array('agents_posts.post_id' => $id));
 
 
-            $post_sell_details = $post->getSellDetails($id, $user->id);
+            // $post_sell_details = $post->getSellDetails($id, $user->id);
 
-            if (isset($post_sell_details[0])) {
-                $sell_details = $post_sell_details[0];
+            // if (isset($post_sell_details[0])) {
+            //     $sell_details = $post_sell_details[0];
 
-                $agent_comission = $sell_details->agent_comission;
-                $commission_rate = $sell_details->comission_92agent;
+            //     $agent_comission = $sell_details->agent_comission;
+            //     $commission_rate = $sell_details->comission_92agent;
 
-                $agent_commission_amount = (($agent_comission / 100) * $sell_details->sale_price);
-                $our_commision = (($commission_rate / 100) * $agent_commission_amount);
+            //     $agent_commission_amount = (($agent_comission / 100) * $sell_details->sale_price);
+            //     $our_commision = (($commission_rate / 100) * $agent_commission_amount);
 
-                $view['post_sell_details'] = $sell_details;
-                $view['commission_amount'] = $our_commision;
-            }
+            //     $view['post_sell_details'] = $sell_details;
+            //     $view['commission_amount'] = $our_commision;
+            // }
 
             if ($view['post']->agents_users_role_id == 2) {
                 $view['types'] = 'Buy';

@@ -283,7 +283,7 @@ class Post extends Model
     public function AppliedPostListGetForAgents($limit = null, $where = null, $orwhere = null, $selected = null)
 
     {
-
+        
         $query1 = DB::table('agents_users_conections')
 
             ->join('agents_posts', function ($join) {
@@ -297,7 +297,7 @@ class Post extends Model
 
             ->leftJoin('agents_users_details', 'agents_users_details.details_id', '=', 'agents_posts.agents_user_id');
 
-
+            
 
         $query1->where(function ($query) use ($where, $orwhere) {
 

@@ -228,7 +228,7 @@ class PostController extends Controller
 
     /* For post details for buyers only */
     public function PostDetailsForBuyer($post_id = null, $compare = null)
-    {
+    { 
 
         if (Auth::user()) {
             $view = array();
@@ -241,7 +241,7 @@ class PostController extends Controller
                 'agents_posts.post_id' => $post_id,
                 'agents_posts.status' => '1'
             ));
-            //echo '<pre>'; print_r($view['userdetails']); die;
+            // echo '<pre>'; print_r($view['userdetails']); die;
             if ($view['post']->agents_users_role_id == 2) {
                 $view['types'] = 'Buy';
             } else {
@@ -251,7 +251,6 @@ class PostController extends Controller
             $view['selecteagent'] = '';
             if ($view['post']->applied_post == 1) {
                 $view['selecteagent'] = $post->getSelectedDetailsByAny(0, array('agents_posts.post_id' => $view['post']->post_id), 'first');
-                //dd($view['post']);
                 $getAppliedPostsBySelectedAgent = $post->getAppliedPostsBySelectedAgent($view['selecteagent']->applied_user_id);
                 if ($getAppliedPostsBySelectedAgent > 5 && $view['post']->agent_payment != 'completed' && $view['post']->closing_date != '') {
                     $view['agentPaymentStatus'] = true;
@@ -663,7 +662,7 @@ class PostController extends Controller
             'agents_posts.agents_user_id' => $request->input('agents_user_id'),
             'agents_posts.agents_users_role_id' => $request->input('agents_users_role_id')
         ));
-        //dd($result);
+        // dd($result);
         return response()->json($result);
     }
 
@@ -969,7 +968,7 @@ class PostController extends Controller
         );
 
         $selldetail_id = DB::table('agents_selldetails')->insertGetId($insert_arr);
-
+    
         if (isset($selldetail_id)) {
             $view['c_status'] = 'success';
             $view['c_message'] = 'Sell details upadted successfully';

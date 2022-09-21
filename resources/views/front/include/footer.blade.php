@@ -440,8 +440,8 @@ $area = $s->getAreaByAny(array('is_deleted' => '0'));
                         <p class="error-text hide user-password-error" id="user-password-error"></p>
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <!-- {!! NoCaptcha::renderJs() !!} -->
-                        <!-- {!! NoCaptcha::display() !!} -->
+                         {!! NoCaptcha::renderJs() !!}
+                         {!! NoCaptcha::display() !!}
                         <!-- mishrar -->
                         <p class="error-text hide user-g-recaptcha-response-error" id="user-g-recaptcha-response-error">
                         </p>
@@ -559,6 +559,20 @@ $area = $s->getAreaByAny(array('is_deleted' => '0'));
 
                                 }
                         </script>
+                        <script>
+                            var total = $('.carousel-item').length;
+                            var currentIndex = $('div.active').index() + 1;
+                            $('#slidetext').html(currentIndex + '/' + total);
+                        
+                            // This triggers after each slide change
+                            $('.carousel').on('slid.bs.carousel', function () {
+                              currentIndex = $('div.active').index() + 1;
+                        
+                              // Now display this wherever you want
+                              var text = currentIndex + '/' + total;
+                              $('#slidetext').html(text);
+                            });
+                          </script>
                         <li class="facebook"><a onclick="changeURL('#')"><i class="fa fa-facebook"></i></a></li>
                         <li class="twitter"><a onclick="changeURL('#')" href="#"><i class="fa fa-twitter"></i></a></li>
                         <li class="dribbble"><a onclick="changeURL('#')"><i class="fa fa-reddit"></i></a></li>

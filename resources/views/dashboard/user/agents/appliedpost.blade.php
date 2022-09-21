@@ -7,11 +7,13 @@
 	}
 </style>
 @stop
+{{-- {{dd($invoice_details);}} --}}
 @section('title', 'Applied Post')
 @section('content')
 <?php  $topmenu='Home'; ?>
 <?php $activemenu = 'appliedpost'; ?>
 @include('dashboard.include.sidebar')
+
 <!--=== Profile ===-->
     <div class="container content profile">
 		<div class="row">
@@ -30,7 +32,7 @@
 						                <th>Sl. No.</th>
 						                <th>Project</th>
 						                <th>Posted By</th>
-						                <th>Posted At</th>
+						                {{-- <th>Posted At</th> --}}
 						                <th>Closing Date</th>
 						                <th>Sale Price</th>
 						                <th>Payment Status</th>
@@ -38,8 +40,59 @@
 						            </tr>
 						        </thead>
 						        <tbody>
+									<?php
+									$n=0;	
+									foreach($invoice_details as $in){?>
+										<tr>
+						                <td>{{$n}}</td>
+						                <td>{{$in->posttitle}}</td>
+						                <td>{{$in->sellers_name}}</td>
+						                {{-- <td>{{$in->address}}</td> --}}
+						                <td>
+						                    <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" title="Select Closing Date" value="{{@$in->sale_date}}" name="proposaldate" class="col-lg-10 form-control reservation proposaldate" />
+                                            </div>
+						                </td>
+						                <td>
+						                    <input type="text" class="form-control" placeholder="Selling Price" value="{{@$in->sale_price}}" />
+						                </td>
+						                
+											<?php if(@$in->sale_date=='' || @$in->sale_price==''){?>
+										<td>
+												<span class="badge badge-blue">
+						                        Closing Pending
+						                    </span>
+										</td>
+											<td>
+												<button class="btn btn-default">Save</button>
+											</td>
+											<?php
+											}else{
+											?>
+										<td>
+						                    <span class="badge badge-red">
+						                        Payment Pending
+						                    </span>
+						                </td>
+						                <td>
+						                    <button class="btn-u padding-6">Pay it now</button>
+						                </td>
+										<?php
+											}
+										?>
+						                    
+						                
+						                <td>
+						                    
+						                </td>
+						            </tr>	
+									<?php
+								$n=$n+1;	
+								}
+									?>
 						            <tr>
-						                <td>1</td>
+						                {{-- <td>1</td>
 						                <td>Need to sell my property</td>
 						                <td>Kedar</td>
 						                <td>01/01/2022 01:01:00</td>
@@ -89,6 +142,7 @@
 						                        Closing Pending
 						                    </span>
 						                </td>
+
 						                <td>
 						                    <button class="btn btn-default">Save</button>
 						                </td>
@@ -154,7 +208,7 @@
 						                <td>
 						                    <button class="btn btn-default">Save</button>
 						                </td>
-						            </tr>
+						            </tr> --}}
 						        </tbody>
 						    </table>
 						</div>

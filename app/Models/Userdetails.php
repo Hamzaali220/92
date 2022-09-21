@@ -178,7 +178,6 @@ class Userdetails extends Model
     /* Get seller buyer details for list */
     public function getSellerBuyerList($request, $limit = NUll, $offset = NULL)
     {
-
         $result = array();
         $query = DB::table('agents_users as a')->select('a.*', 'b.*', 'c.role_name');
         $query->Join('agents_users_details as b', 'b.details_id', '=', 'a.id');

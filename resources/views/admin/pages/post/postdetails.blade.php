@@ -16,7 +16,6 @@
 
 <?php 
 $agent_selected = false;
-
 ?>
 
 
@@ -155,6 +154,7 @@ $agent_selected = false;
                       <?php 
                       foreach ($agentslist as $agent) {
                         //print_r($agent);
+                        
                         ?>
                         <option value="{{ $agent->id }}">{{ $agent->name }}</option>
                         <?php

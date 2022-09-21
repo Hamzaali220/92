@@ -39,6 +39,7 @@
 						</div>
 						<div>	
 							<div class="append-aplied-post-data" id="append-aplied-post-data"></div>
+							{{-- {{dd($userdetails);}} --}}
 							<div id="loadappliedpost" class="col-md-12 center loder loadappliedpost"><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div>
 							<button type="button" id="loaduploadandshare" class="hide btn-u btn-u-default btn-u-sm btn-block">Load More</button>
 						</div>

@@ -526,6 +526,7 @@
         if(extension=='png' || extension=='jpg' || extension=='jpeg' || extension=='gif' || extension=='tif'){
             docs ='<img         class="documen document_uploadfiles_'+uploadshare_data[el].upload_share_id+'" src="'+uploadshare_data[el].attachments+'" frameborder="0" scrolling="no" width="100%" height="300">';
         }else{
+            debugger
             docs ='<iframe  class="documen document_uploadfiles_'+uploadshare_data[el].upload_share_id+'" src="https://docs.google.com/viewer?url='+uploadshare_data[el].attachments+'&embedded=true" frameborder="0" scrolling="no" width="100%" height="300"></iframe>';
         }
         var hh =    docs+
