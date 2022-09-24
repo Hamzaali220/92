@@ -57,11 +57,11 @@ class SpecializationController extends Controller
             );
             if (!empty($skill_id)) :
                 DB::table('agents_users_agent_skills')->where(array('skill_id' => $skill_id))->update($data_arr);
-                return Redirect::back()->with('success', 'Skills & specialization has been updated successfully.');
+                return Redirect::back()->with('success', 'Skills / Specialization has been updated successfully.');
             else :
                 $data_arr['created_at'] = date('Y-m-d H:i:s');
                 DB::table('agents_users_agent_skills')->insertGetId($data_arr);
-                return Redirect::back()->with('success', 'Skills & specialization has been created successfully.');
+                return Redirect::back()->with('success', 'Skills / Specialization has been created successfully.');
             endif;
             return Redirect::back()->with('dbError', 'Oops Something went wrong !!');
         endif;

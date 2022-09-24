@@ -12,7 +12,7 @@
 	@endif
 @include('dashboard.include.sidebar')
 
-	<!--=== Profile ===-->	
+	<!--=== Profile ===-->
 	<div class="container content profile">
 		<div class="row">
 			<!--Left Sidebar-->
@@ -24,17 +24,17 @@
 			@endif
 
 			<div class="col-md-9">
-				@if($segment[2] == "questions")		
+				@if($segment[2] == "questions")
 				<div class="box-shadow-profile ">
 					<!-- Default Proposals -->
-					<div class="panel-profile">				
+					<div class="panel-profile">
 						<div class="panel-heading overflow-h air-card">
 							<h2 class="heading-sm pull-left">Questions for Agents</h2>
 							<a class="cursor pull-right btn btn-default new-ask-question" data-toggle="tab"><i class="fa fa-plus"></i> Add </a>
 						</div>
 						<!-- question accordion -->
 						<div id="enters-questions-to-ask" class="sky-form">
-						
+
 						</div>
 						<div class="body-overlay_questions body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 						<!--/end row-->
@@ -43,18 +43,18 @@
 				</div>
 				@endif
 
-				@if($segment[2] == "tests")				
+				@if($segment[2] == "tests")
 				{{$activemenu}}
-				
+
 				<?php $sellerLogin = '';  $buyerLogin = '';?>
 				@if(env('user_role_'.Auth::user()->agents_users_role_id) == 'seller')
-					@php 
+					@php
 						$sellerLogin = "Buyer and Agent";
 					@endphp
 				@endif
 
 				@if(env('user_role_'.Auth::user()->agents_users_role_id) == 'buyer')
-					@php 
+					@php
 						$buyerLogin = "Agent and Seller";
 					@endphp
 				@endif
@@ -68,8 +68,8 @@
 						<div class="panel-heading overflow-h air-card">
 							<h2 class="heading-sm pull-left">Test Questions  </h2>
 						</div>
-						<div class="" >						
-							<div id="enters-default-answers" class="sky-form">						
+						<div class="" >
+							<div id="enters-default-answers" class="sky-form">
 							</div>
 							<div class="body-overlay_default body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 						</div>
@@ -77,7 +77,7 @@
 					</div>
 					<!-- Default Proposals -->
 				</div>
-				@endif		
+				@endif
 			</div>
 			<!-- End Profile Content -->
 		</div><!--/end row-->
@@ -169,7 +169,7 @@
 						<br>
 						<div class="body-overlay body-overlay-survey"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 						<div id="surveyerrormsgshow"> </div>
-						<p class="sure">Are you sure that you need to add question to the Survey.</p>
+						<p class="sure">Are you sure that you need to add question from the Survey.</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn-u btn-u-primary delete" id="delete">Sure</button>
@@ -221,7 +221,7 @@
 				</div>
 
 				<div class="modal-body sky-form" id="append-proposal-share-user-list">
-				</div> 
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn-u" data-dismiss="modal">Share</button>
 					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
@@ -233,7 +233,7 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script>
 	$(function() {
@@ -270,16 +270,16 @@
 			data: {question_type:'{{ $user->agents_users_role_id }}',add_by:1,add_by_role:1,_token : '{{ csrf_token() }}',from_id: '{{ $user->id }}',from_role : '{{ $user->agents_users_role_id }}'},
 
 			beforeSend: function(){$(".body-overlay_default").show();},
-			success: function(result) {	
+			success: function(result) {
 				$(".body-overlay_default").hide();
 				$.each( result[0], function( key, val ) {
-					var htm = '<div class="panel-heading border1-bottom col-md-12">'+				
+					var htm = '<div class="panel-heading border1-bottom col-md-12">'+
 									'<h4 class="panel-title question-title"><span>'+
 										(key+1)+') </span><a class="question-question q-s-'+val.question_id+'" >'+
 												 val.question+
 										 	'</a>'+
 									 	'<span href="#" class="margin cursor sitegreen pull-right accordion-toggle collapsed" data-toggle="collapse" data-target="#collapse-answer-'+key+'"> <i class="fa fa-reply"> </i> <small> Answer </small> </span>'+
-								 	'</h4>'+							 	
+								 	'</h4>'+
 								 	'<div id="collapse-answer-'+key+'" class="panel-collapse collapse panel-body padding-0 margin-top-10">'+
 
 										'{!! Form::open(array("url" => "#","class"=>"sky-form enters-default-answers")) !!}'+
@@ -291,7 +291,7 @@
 												'</label>'+
 											'</div>'+
 											'<input type="hidden" name="question_id" value="'+val.question_id+'">'+
-											'<div class="col-md-2 margin-top-5"> <button type="submit" class="btn-u ladda-button pull-right">Save</button></div>'+								
+											'<div class="col-md-2 margin-top-5"> <button type="submit" class="btn-u ladda-button pull-right">Save</button></div>'+
 										'{!! Form::close() !!}'+
 									'</div>'+
 								'</div>';
@@ -311,7 +311,7 @@
 				type: 'POST',
 				data: {question_id:question_id,answers:answers,_token : '{{ csrf_token() }}',from_id : '{{ $user->id }}',from_role : '{{ $user->agents_users_role_id }}'},
 
-				success: function(result) {	
+				success: function(result) {
 					$('.error-text').text('');
 					$('.field-border').removeClass('error-border');
 					if(typeof result.error !='undefined' && result.error !=null){
@@ -322,14 +322,14 @@
 					 	esmsg.text('').addClass('hide');
 					}
 
-					if(typeof result.msg !='undefined' && result.msg !=null){				
+					if(typeof result.msg !='undefined' && result.msg !=null){
 						esmsg.text('').css({'color':'green'});
 						esmsg.removeClass('hide').addClass('show alert alert-success text-center').text(result.msg);
 						// setTimeout(location.reload(),5000);
 		    			setInterval(function() { esmsg.text('').addClass('hide').removeClass('show alert-success'); },5000);
 					}
 				},
-			  	error: function(data) {	
+			  	error: function(data) {
 		    		if(data.status=='500'){
 						esmsg.text(data.statusText).css({'color':'red'}).removeClass('hide').addClass('show');
 		    		}else if(data.status=='422'){
@@ -346,7 +346,7 @@
 			type: 'POST',
 			data: {_token : '{{ csrf_token() }}',add_by : '{{ $user->id }}',add_by_role : '{{ $user->agents_users_role_id }}'},
 			beforeSend: function(){$(".body-overlay_questions").show();},
-			success: function(result) {	
+			success: function(result) {
 			console.log(result);
 				$(".body-overlay_questions").hide();
 				var az =1;
@@ -357,21 +357,21 @@
 						az = 1+az;
 						var utyp = 'agents';
 						var apen = $('#enters-questions-to-ask');
-					}					
+					}
 
 					var htm = '<div class="askquestioncount_'+utyp+'">'+
 								'<div class="panel-group margin-0" id="accordion-'+utyp+'-'+key+'">'+
-										'<div class="panel-heading border1-bottom">'+			
+										'<div class="panel-heading border1-bottom">'+
 											'<h4 class="panel-title question-title"><span>'+
 											key+') </span><a class="question-question q-s-'+val.question_id+'" >'+
 													 val.question+
-											 	'</a>'+										
+											 	'</a>'+
 
 												'<span href="#" class="margin cursor sitegreen pull-right accordion-toggle collapsed" data-toggle="collapse" data-target="#collapse-'+utyp+'-'+key+'"> <i class="fa fa-edit  marginediticon"> </i> <small> Edit </small> </span>'+
 
 												'<span class="sitegreen margin cursor pull-right share_'+val.question_id+'"  Title="Share" onclick="shareproposalpopup('+val.question_id+','+val.question_type+')" id="share_'+val.question_id+'"> <i class="rounded-x fa fa-share-alt"></i> <small> Share </small></span>'+
 												'<span class="clickimportance_'+val.question_id+'">';
-											
+
 
 													if(val.importance==0){
 														htm +='<span href="#" class="cursor margin green pull-right" onclick="importance('+val.question_id+');"> <i class="fa fa-check-circle-o"> </i> <small>Importance</small> </span>';
@@ -384,7 +384,7 @@
 														htm +='<span href="#" class="cursor margin green pull-right" onclick="survey('+val.question_id+');"> <i class="fa fa-check-circle-o"> </i> <small>Survey</small> </span>';
 													}else{
 														htm +='<span href="#" class="cursor margin red pull-right" onclick="surveyremove('+val.question_id+');"> <i class="fa fa-times-circle-o"> </i> <small>Survey</small> </span>';
-													} 
+													}
 										htm +=' </span>'+
 											'</h4>'+
 											'<div id="collapse-'+utyp+'-'+key+'" class="panel-collapse collapse">'+
@@ -398,13 +398,13 @@
 															'</label>'+
 														'</div>'+
 														'<input type="hidden" name="question_id" value="'+val.question_id+'">'+
-														'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+	
+														'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+
 													'{!!Form::close()!!}'+
 												'</div>'+
 											'</div>'+
-										'</div>'+							
+										'</div>'+
 								'</div>'+
-							'</div>';			
+							'</div>';
 					apen.append(htm);
 				});
 			}
@@ -418,12 +418,12 @@
 			var fieldname = e.target[1].name;
 			var $form = $(e.target),esmsg = $(".question-ask-msg-"+question_id);
 			console.log(fieldname+question+question_id);
-			
+
 			$.ajax({
 				url: "{{url('/')}}/updatequestion",
 				type: 'POST',
 				data: {question_id:question_id,question:question,_token : '{{ csrf_token() }}',add_by : '{{ $user->id }}',add_by_role : '{{ $user->agents_users_role_id }}'},
-				success: function(result) {	
+				success: function(result) {
 					$('.error-text').text('');
 					$('.field-border').removeClass('error-border');
 					if(typeof result.error !='undefined' && result.error !=null){
@@ -434,7 +434,7 @@
 					 	esmsg.text('').addClass('hide');
 					}
 
-					if(typeof result.msg !='undefined' && result.msg !=null){	
+					if(typeof result.msg !='undefined' && result.msg !=null){
 						esmsg.text('').addClass('hide');
 						$('.q-s-'+question_id).text(question);
 						msgshowfewsecond('"'+question+'" question has been updated successfuly.');
@@ -442,7 +442,7 @@
 						$('.panel-collapse').removeClass('in');
 					}
 				},
-			  	error: function(data) {	
+			  	error: function(data) {
 		    		if(data.status=='500'){
 						esmsg.text(data.statusText).css({'color':'red'}).removeClass('hide').addClass('show');
 		    		}else if(data.status=='422'){
@@ -462,7 +462,7 @@
 				data: $form.serialize(),
 				beforeSend: function(){$(".body-overlay-popup").show();},
 	    	    processData:false,
-				success: function(result) {	
+				success: function(result) {
 					$(".body-overlay-popup").hide();
 					$('.error-text').text('');
 					$('.field-border').removeClass('error-border');
@@ -474,9 +474,9 @@
 					 	esmsg.text('').addClass('hide');
 					}
 
-					if(typeof result.msg !='undefined' && result.msg !=null){					
+					if(typeof result.msg !='undefined' && result.msg !=null){
 						esmsg.text('').css({'color':'green'});
-						esmsg.removeClass('hide').addClass('show alert alert-success text-center').text(result.msg);    		
+						esmsg.removeClass('hide').addClass('show alert alert-success text-center').text(result.msg);
 		    			setInterval(function() { esmsg.text('').addClass('hide').removeClass('show alert-success'); },5000);
 						anymodelhideinfewsecond('#new-ask-question');
 						var val = result.data;
@@ -485,15 +485,15 @@
 							key = $('.askquestioncount_agents').length+1;
 							var utyp = 'agents';
 							var apen = $('#enters-questions-to-ask');
-						}					
+						}
 
 						var htm = '<div class="askquestioncount_'+utyp+'">'+
 									'<div class="panel-group margin-0" id="accordion-'+utyp+'-'+key+'">'+
-											'<div class="panel-heading border1-bottom">'+		
-												'<h4 class="panel-title question-title"><span>'+		
+											'<div class="panel-heading border1-bottom">'+
+												'<h4 class="panel-title question-title"><span>'+
 												key+') </span><a class="question-question q-s-'+val.question_id+'" >'+
 														 val.question+
-												 	'</a>'+										
+												 	'</a>'+
 
 													'<span href="#" class="margin cursor sitegreen pull-right accordion-toggle collapsed" data-href="#collapse-'+utyp+'-'+key+'"> <i class="fa fa-edit  marginediticon"> </i> <small> Edit </small> </span>'+
 													'<span class="sitegreen margin cursor pull-right share_'+val.question_id+'"  Title="Share" onclick="shareproposalpopup('+val.question_id+','+val.question_type+')" id="share_'+val.question_id+'"> <i class="rounded-x fa fa-share-alt"></i> <small> Share </small></span>'+
@@ -509,12 +509,12 @@
 															htm +='<span href="#" class="cursor margin green pull-right" onclick="survey('+val.question_id+');"> <i class="fa fa-check-circle-o"> </i> <small>Survey</small> </span>';
 														}else{
 															htm +='<span href="#" class="cursor margin red pull-right" onclick="surveyremove('+val.question_id+');"> <i class="fa fa-times-circle-o"> </i> <small>Survey</small> </span>';
-														} 
+														}
 											htm +=' </span>'+
 												'</h4>'+
 												'<div id="collapse-'+utyp+'-'+key+'" class="panel-collapse collapse">'+
 													'<div class="panel-body padding-0 margin-top-10">'+
-														'{!! Form::open(array("url" => "#","class"=>"sky-form enters-questions-to-ask")) !!}'+	
+														'{!! Form::open(array("url" => "#","class"=>"sky-form enters-questions-to-ask")) !!}'+
 															'<div class="hide question-ask-msg-'+val.question_id+'"></div>'+
 														 	'<div class="col-md-10">'+
 																'<label class="textarea ">'+
@@ -523,17 +523,17 @@
 																'</label>'+
 															'</div>'+
 															'<input type="hidden" name="question_id" value="'+val.question_id+'">'+
-															'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+								
+															'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+
 														'{!!Form::close()!!}'+
 													'</div>'+
 												'</div>'+
-											'</div>'+								
+											'</div>'+
 									'</div>'+
 								'</div>';
 						apen.append(htm);
 					}
 				},
-			  	error: function(data) {	
+			  	error: function(data) {
 		    		if(data.status=='500'){
 						esmsg.text(data.statusText).css({'color':'red'}).removeClass('hide').addClass('show');
 		    		}else if(data.status=='422'){
@@ -545,7 +545,7 @@
 			});
 		});
 
-	    /* question answear */    
+	    /* question answear */
 	    $('.new-ask-question').click(function(e){
 			e.preventDefault();
 			$('#Question_id').val('');
@@ -555,7 +555,7 @@
 		$('#searchproposalshareuser').submit(function(e){
 			e.preventDefault();
 			shareproposalpopup($('#praposalid').val(),$('#praposalidrole').val());
-		});	
+		});
     })();
 
     function closegroup(id) {
@@ -574,7 +574,7 @@
 					type: 'post',
 					data: {importance_item_id:id,importance_type:1,_token : '{{ csrf_token() }}',agents_user_id: '{{ $user->id }}',agents_users_role_id : '{{ $user->agents_users_role_id }}'},
 					beforeSend: function(){$(".body-overlay-imprter").show();},
-					success: function(result) {	
+					success: function(result) {
 						// console.log(result);
 						$(".body-overlay-imprter").hide();
 						if(result.status=='error'){
@@ -586,10 +586,10 @@
 						}
 						anymodelhideinfewsecond('#uploadsharedeleteconfirm');
 						// setTimeout($('#imprterrormsgshow').removeClass('alert alert-success alert-danger text-center').text(''),7000);
-					},error: function(result) {	
-						$(".body-overlay-imprter").hide(); 
+					},error: function(result) {
+						$(".body-overlay-imprter").hide();
 					}
-				});        
+				});
         });
 	}
 
@@ -608,7 +608,7 @@
 
 					// processData:false,
 					beforeSend: function(){$(".body-overlay-imprter").show();},
-					success: function(result) {	
+					success: function(result) {
 						$(".body-overlay-imprter").hide();
 						if(result.status=='error'){
 							$('#imprterrormsgshow').addClass('alert alert-danger text-center').text(result.msg);
@@ -619,13 +619,13 @@
 						}anymodelhideinfewsecond('#uploadsharedeleteconfirm');
 						// setTimeout(location.reload(),5000);
 					},error: function(data) {	$(".body-overlay-imprter").hide(); 	}
-				});        
+				});
         });
 	}
 
 	function survey(id) {
 		var qdata = important_data[id];
-		$('.sure').show().text('Are you sure that you need to add question ('+qdata.question+') to the Survey.');
+		$('.sure').show().text('Are you sure that you need to add question ('+qdata.question+') from the Survey.');
 		$('#surveyerrormsgshow').removeClass('alert alert-success alert-danger text-center').text('');
 		$('#surveyconfirm')
 	        .modal({ backdrop: 'static', keyboard: false })
@@ -635,7 +635,7 @@
 					type: 'post',
 					data: {question_id:id,_token : '{{ csrf_token() }}',agents_user_id: '{{ $user->id }}',agents_users_role_id : '{{ $user->agents_users_role_id }}'},
 					beforeSend: function(){$(".body-overlay-survey").show();},
-					success: function(result) {	
+					success: function(result) {
 						// console.log(result);
 						$(".body-overlay-survey").hide();
 						if(result.status=='error'){
@@ -646,16 +646,16 @@
 							$('.sure').hide();
 						}anymodelhideinfewsecond('#surveyconfirm');
 						// setTimeout($('#imprterrormsgshow').removeClass('alert alert-success alert-danger text-center').text(''),7000);
-					},error: function(result) {	
-						$(".body-overlay-survey").hide(); 
+					},error: function(result) {
+						$(".body-overlay-survey").hide();
 					}
-				});        
+				});
         });
 	}
 
 	function surveyremove(id) {
 		var qdata = important_data[id];
-		$('.sure').show().text('Are you sure that you need to remove question ('+qdata.question+') to the Survey.');
+		$('.sure').show().text('Are you sure that you need to remove question ('+qdata.question+') from the Survey.');
 		$('#surveyerrormsgshow').removeClass('alert alert-success alert-danger text-center').text('');
 		$('#surveyconfirm')
 	        .modal({ backdrop: 'static', keyboard: false })
@@ -666,7 +666,7 @@
 					data: {question_id:id, _token : '{{ csrf_token() }}',add_by : '{{ $user->id }}',add_by_role : '{{ $user->agents_users_role_id }}'},
 					// processData:false,
 					beforeSend: function(){$(".body-overlay-survey").show();},
-					success: function(result) {	
+					success: function(result) {
 						$(".body-overlay-survey").hide();
 						if(result.status=='error'){
 							$('#surveyerrormsgshow').addClass('alert alert-danger text-center').text(result.msg);
@@ -677,7 +677,7 @@
 						}anymodelhideinfewsecond('#surveyconfirm');
 						// setTimeout(location.reload(),5000);
 					},error: function(data) {	$(".body-overlay-survey").hide(); 	}
-				});        
+				});
         });
 	}
 
@@ -689,9 +689,9 @@
 		$('#praposalid').val(id);
 		$('#praposalidrole').val(type);
 		var keyword = $('#proposalkeyword').val();
-		var address = $('#proposaladdress').val();	
+		var address = $('#proposaladdress').val();
 		var date = $('#proposaldate').val();
-			
+
 		$.ajax({
 			url: "{{url('/')}}/shared/question/with/connected/users/by/"+id+"/"+type+"/{{ $user->id }}/{{ $user->agents_users_role_id }}",
 			type: 'post',
@@ -700,7 +700,7 @@
 			        'X-CSRF-TOKEN': '{{ csrf_token() }}'
 			    },
 			beforeSend: function(){$(".loadproposalshare").show();},
-			success: function(result) {	
+			success: function(result) {
 				$(".loadproposalshare").hide();
 				console.log(result);
 				if(result.count !== 0){
@@ -710,7 +710,7 @@
 							var asrvfun ='<input type="checkbox" checked onclick="shareproposalremove('+value.details_id+','+id+','+value.share_file.result.shared_id+')" name="proposale-checkox-'+value.details_id+'"><i class="o-p-a"></i>';
 						}else{
 							var asrvfun ='<input type="checkbox" onclick="shareproposal('+value.details_id+','+id+')"  name="proposale-checkox-'+value.details_id+'"><i class="n-p-a"></i>';
-						} 
+						}
 
 						var htmll = '<section><label class="checkbox" style="border-bottom: 1px solid #e6e6e6;">'+
 										'<span class="proposal_share_'+value.details_id+'_'+value.details_id_role_id+'">'+asrvfun+'</span>'+
@@ -721,10 +721,10 @@
 									'</label></section>';
 				 		$('#append-proposal-share-user-list').append(htmll);
 					});
-				}			
+				}
 			},
 
-		  	error: function(data) {	
+		  	error: function(data) {
 	    		$(".loadproposalshare").hide();
 	    		if(data.status=='500'){
 					$('#append-proposal-share-user-list').text(data.statusText).css({'color':'red'});
@@ -742,28 +742,28 @@
 			type: 'post',
 			data: {notification_type : 4,notification_message : '{{ $userdetails->name }} asked questions related to your post `'+userdata.posttitle+'`' ,shared_type:1 ,shared_item_id:id,shared_item_type : 2,shared_item_type_id : userdata.post_id,receiver_id : userdata.details_id,receiver_role: userdata.details_id_role_id,sender_id: '{{ $user->id }}',sender_role : '{{ $user->agents_users_role_id }}',_token : '{{ csrf_token() }}'},
 
-			success: function(result) {	
+			success: function(result) {
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" checked onclick="shareproposalremove('+userid+','+id+','+result.data+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="o-p-a"></i>');
 			},
-			error: function(result) {	
+			error: function(result) {
 
 			}
-		});  
+		});
 	}
 
-	function shareproposalremove(userid,id,shared_id) {		
+	function shareproposalremove(userid,id,shared_id) {
 		var userdata = shared_proposal_connected_user_list[userid];
        	$.ajax({
 			url: "{{url('/shared/data/delete')}}",
 			type: 'post',
 			data: { id : id, shared_id : shared_id, _token : '{{ csrf_token() }}' },
-			success: function(result) {	
+			success: function(result) {
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" onclick="shareproposal('+userid+','+id+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="n-p-a"></i>');
 			},
 			error: function(result) {
 
 			}
-		});    
+		});
 	}
-</script> 
+</script>
 @stop

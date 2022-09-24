@@ -166,7 +166,7 @@
                 <div class="col-md-12">
                   <div class="col-md-4">
                       <!-- <input type="checkbox" value="1" name="skill" id="skill" onclick="checkall(this.id)"> -->
-                      <label for="skill">Skills & Specialization</label>
+                      <label for="skill">'Skills / Specialization</label>
                   </div>
                   <div class="col-md-4">
                       <input type="checkbox" value="1" name="skillread" id="skillread"  onclick="validateall('skill')" class="skill">
@@ -255,9 +255,9 @@
 <script type="text/javascript">
   var agentsdata       = [];
   var valid = 0;
-  
+
   // $( document ).ready(function() {
-    
+
   //   $('#loadmoreagents').click(function(e){
   //     e.preventDefault();
   //     var limit = $(this).attr('title');
@@ -296,6 +296,6 @@
       form_error.html("");
     }
   });
-  
-</script> 
+
+</script>
 @stop
