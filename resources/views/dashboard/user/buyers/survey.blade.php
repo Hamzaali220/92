@@ -42,7 +42,7 @@
 
 			<div class="col-md-9">
 
-				
+
 
 				<div class="box-shadow-profile ">
 
@@ -58,11 +58,11 @@
 
 						</div>
 
-						<div class="panel-body padding-list" >							
+						<div class="panel-body padding-list" >
 
 							<div id="append-importantlist-ajax">
 
-									
+
 
 							</div>
 
@@ -84,7 +84,7 @@
 
 				</div>
 
-				
+
 
 			</div>
 
@@ -120,7 +120,7 @@
 
 						<div id="upload-delete-msg"> </div>
 
-						<p class="rempovemessag">Are you sure that you need to add  question to the Survey.</p>
+						<p class="rempovemessag">Are you sure that you need to add  question from the Survey.</p>
 
 					</div>
 
@@ -236,7 +236,7 @@
 
 			<div class="modal-content not-top">
 
-				
+
 
 
 
@@ -328,7 +328,7 @@
 
 @section('scripts')
 
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
@@ -408,7 +408,7 @@
 
 	    	    processData:false,
 
-				success: function(result) {	
+				success: function(result) {
 
 					$(".body-overlay-popup").hide();
 
@@ -432,13 +432,13 @@
 
 					if(typeof result.msg !='undefined' && result.msg !=null){
 
-						
+
 
 						esmsg.text('').css({'color':'green'});
 
 						esmsg.removeClass('hide').addClass('show alert alert-success text-center').text(result.msg);
 
-		    		
+
 
 		    			setInterval(function() { esmsg.text('').addClass('hide').removeClass('show alert-success'); },5000);
 
@@ -448,15 +448,15 @@
 
 						important_data[val.question_id] = val;
 
-						loadimportant(0,'yes');	
+						loadimportant(0,'yes');
 
 					}
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -512,7 +512,7 @@
 
 			shareproposalpopup($('#praposalid').val(),$('#praposalidrole').val());
 
-		});	
+		});
 
     })();
 
@@ -538,7 +538,7 @@
 
     	    contentType: false,
 
-			success: function(result) {	
+			success: function(result) {
 
 				$(".loaduploadshare").hide();
 
@@ -550,21 +550,21 @@
 
 						key = key+1;
 
-						var htmll = 
+						var htmll =
 
 									'<div class="askquestioncount survey-list-'+value.survey_id+'" >'+
 
 										'<div class="panel-group margin-0" id="accordion-'+key+'">'+
 
-											
+
 
 												'<div class="panel-heading border1-bottom">'+
 
-													
+
 
 													'<h4 class="panel-title question-title"><span>'+
 
-													
+
 
 													key+') </span><a class="question-question q-s-'+value.question_id+'" >'+
 
@@ -572,7 +572,7 @@
 
 													 	'</a>'+
 
-													
+
 
 														'<span class="red margin cursor pull-right "  Title="Remove" onclick="surveydelete('+value.survey_id+');" > <i class="rounded-x fa fa-trash-o"></i> <small> Remove </small></span>'+
 
@@ -580,7 +580,7 @@
 
 													'</h4>'+
 
-												'</div>'+											
+												'</div>'+
 
 										'</div>'+
 
@@ -590,7 +590,7 @@
 
 					});
 
-					
+
 
 					if(result.next!=0){
 
@@ -604,13 +604,13 @@
 
 				}
 
-				
+
 
 			},
 
-		  	error: function(data) 
+		  	error: function(data)
 
-	    	{	
+	    	{
 
 	    		if(data.status=='500'){
 
@@ -654,7 +654,7 @@
 
 					beforeSend: function(){$(".body-overlay").show();},
 
-					success: function(result) {	
+					success: function(result) {
 
 						$(".body-overlay").hide();
 
@@ -672,11 +672,11 @@
 
 						anymodelhideinfewsecond('#uploadsharedeleteconfirm');
 
-						loadimportant(0,'yes');	
+						loadimportant(0,'yes');
 
 					},error: function(data) {	$(".body-overlay").hide(); 	}
 
-				});        
+				});
 
         });
 
@@ -698,13 +698,13 @@
 
 		$('#praposalidrole').val(type);
 
-		var keyword = $('#proposalkeyword').val();			
+		var keyword = $('#proposalkeyword').val();
 
-		var address = $('#proposaladdress').val();		
+		var address = $('#proposaladdress').val();
 
-		var date = $('#proposaldate').val();	
+		var date = $('#proposaldate').val();
 
-		
+
 
 		$.ajax({
 
@@ -722,7 +722,7 @@
 
 			beforeSend: function(){$(".loadproposalshare").show();},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$(".loadproposalshare").hide();
 
@@ -740,7 +740,7 @@
 
 							var asrvfun ='<input type="checkbox" onclick="shareproposal('+value.details_id+','+id+')"  name="proposale-checkox-'+value.details_id+'"><i class="n-p-a"></i>';
 
-						} 
+						}
 
 						var htmll = '<section><label class="checkbox" style="border-bottom: 1px solid #e6e6e6;">'+
 
@@ -762,13 +762,13 @@
 
 				}
 
-				
+
 
 			},
 
-		  	error: function(data) 
+		  	error: function(data)
 
-	    	{	
+	    	{
 
 	    		$(".loadproposalshare").hide();
 
@@ -800,21 +800,21 @@
 
 			data: {notification_type : 4,notification_message : '{{ $userdetails->name }} asked questions related to your post `'+userdata.posttitle+'`' ,shared_type:1 ,shared_item_id:id,shared_item_type : 2,shared_item_type_id : userdata.post_id,receiver_id : userdata.details_id,receiver_role: userdata.details_id_role_id,sender_id: '{{ $user->id }}',sender_role : '{{ $user->agents_users_role_id }}',_token : '{{ csrf_token() }}'},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" checked onclick="shareproposalremove('+userid+','+id+','+result.data+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="o-p-a"></i>');
 
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});  
+		});
 
 
 
 	}
 
-	function shareproposalremove(userid,id,shared_id) {		
+	function shareproposalremove(userid,id,shared_id) {
 
 		var userdata = shared_proposal_connected_user_list[userid];
 
@@ -826,18 +826,18 @@
 
 			data: { id : id, shared_id : shared_id, _token : '{{ csrf_token() }}' },
 
-			success: function(result) {	
+			success: function(result) {
 
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" onclick="shareproposal('+userid+','+id+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="n-p-a"></i>');
 
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});    
+		});
 
 	}
 
-</script> 
+</script>
 
 @stop

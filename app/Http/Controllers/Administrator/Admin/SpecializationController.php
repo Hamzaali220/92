@@ -38,33 +38,39 @@ class SpecializationController extends Controller
     /* For store specialization */
     public function save(Request $request)
     {
-        $rules = array(
-            'skill'  => 'required',
-        );
-        $input_arr = array(
-            'skill' => $request->input('skill'),
-        );
-        $validator = Validator::make($input_arr, $rules);
-        if ($validator->fails()) :
-            return Redirect::back()->withErrors($validator)->withInput();
-        else :
-            $skill_id = $request->input('skill_id') ? $request->input('skill_id') : '';
-
-            $data_arr = array(
-                'skill' => $request->input('skill'),
-                'is_deleted' => '0',
-                'updated_at' => date('Y-m-d H:i:s')
+        // $users = DB::table('agents_users_agent_skills')->select('skill')->where('skill','=', $request->skill)->get();
+        // if(!$users){
+            $rules = array(
+                'skill'  => 'required',
             );
-            if (!empty($skill_id)) :
-                DB::table('agents_users_agent_skills')->where(array('skill_id' => $skill_id))->update($data_arr);
-                return Redirect::back()->with('success', 'Skills & specialization has been updated successfully.');
+            $input_arr = array(
+                'skill' => $request->input('skill'),
+            );
+            $validator = Validator::make($input_arr, $rules);
+            if ($validator->fails()) :
+                return Redirect::back()->withErrors($validator)->withInput();
             else :
-                $data_arr['created_at'] = date('Y-m-d H:i:s');
-                DB::table('agents_users_agent_skills')->insertGetId($data_arr);
-                return Redirect::back()->with('success', 'Skills & specialization has been created successfully.');
+                $skill_id = $request->input('skill_id') ? $request->input('skill_id') : '';
+
+                $data_arr = array(
+                    'skill' => $request->input('skill'),
+                    'is_deleted' => '0',
+                    'updated_at' => date('Y-m-d H:i:s')
+                );
+                if (!empty($skill_id)) :
+                    DB::table('agents_users_agent_skills')->where(array('skill_id' => $skill_id))->update($data_arr);
+                    return Redirect::back()->with('success', 'Skills / Specialization has been updated successfully.');
+                else :
+                    $data_arr['created_at'] = date('Y-m-d H:i:s');
+                    DB::table('agents_users_agent_skills')->insertGetId($data_arr);
+                    return Redirect::back()->with('success', 'Skills / Specialization has been created successfully.');
+                endif;
+                return Redirect::back()->with('dbError', 'Oops Something went wrong !!');
             endif;
-            return Redirect::back()->with('dbError', 'Oops Something went wrong !!');
-        endif;
+        // }
+        // else{
+        //     return Redirect::back()->with('msg', 'Already exist')->withInput();
+        // }
     }
 
     /* For get date and time */

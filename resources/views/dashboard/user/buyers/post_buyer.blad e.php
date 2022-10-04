@@ -18,7 +18,7 @@
 							<!--<h2 class="heading-sm pull-left"> Posts </h2>-->
 							<a class="cursor pull-right btn btn-default" id="addnewpost"><i class="fa fa-plus"></i> Add</a>
 						</div>
-						<div class="" >	
+						<div class="" >
 							<div class="postappend"></div>
 							<div id="loaduploadshare" class="col-md-12 center loder loaduploadshare"><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div>
 
@@ -32,7 +32,7 @@
 
 			</div>
 
-			
+
 
 			<!-- End Profile Content -->
 
@@ -40,9 +40,9 @@
 
 		</div>
 
-	</div>	
+	</div>
 
-	
+
 
 	<div class="modal fade" id="postaddeditmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
@@ -68,9 +68,9 @@
 
 							<div class="hide post-msg"></div>
 
-							
 
-							
+
+
 
 							<section title="Post Title" class="padding-bottom-10 border1-bottom">
 
@@ -104,7 +104,7 @@
 
 							<section class="row padding-bottom-10 border1-bottom">
 
-								
+
 
 								<div class="col col-6">
 
@@ -116,7 +116,7 @@
 
 											<option value="">Select State</option>
 
-											
+
 
 										</select>
 
@@ -125,7 +125,7 @@
 									</label>
 
 								</div>
-								
+
 								<div class="col col-6">
 
 									<label class="label weight">City<span class="mandatory">*</span> </label>
@@ -142,7 +142,7 @@
 
 								</div>
 
-								
+
 
 							</section>
 
@@ -200,7 +200,7 @@
 
 							</section>
 
-							
+
 
 							<section class="border1-bottom padding-bottom-10"  title="Years of experience">
 
@@ -294,7 +294,7 @@
 
 									<label class="radio"><input type="radio" name="firsttime_home_buyer" class="firsttime_home_buyer_2" value="0" ><i class="rounded-x"></i>No</label>
 
-									
+
 
 									<b class="error-text" id="firsttime_home_buyer_error"></b>
 
@@ -356,7 +356,7 @@
 
 									<select id="bids_emailed" name="bids_emailed" placeholder="Property type">
 
-										<option value="">select option</option>
+										<option value="">Select Option</option>
 
 										<option value="Once a day" > Once a day </option>
 
@@ -439,7 +439,7 @@
 
 	(function() {
 
-		
+
 
 		$.ajax({
 
@@ -447,7 +447,7 @@
 
 			type: 'get',
 
-			success: function(result) {	
+			success: function(result) {
 
 				$.each( result, function( key, val ) {
 
@@ -465,7 +465,7 @@
 
 				    onChange: function(option, checked) {
 
-				    	
+
 
 		            }
 
@@ -474,30 +474,30 @@
 			}
 
 		});
-		
-		$('#state').on('change',function(){			
+
+		$('#state').on('change',function(){
 			$('#city').children('option:not(:first)').remove();
 			state_id= $(this).val();
 			$.ajax({
 			url: "{{url('/')}}/city/get/"+state_id,
 			type: 'get',
-			success: function(result) {	
+			success: function(result) {
 				statearray = result;
 				$.each( result, function( key, val ) {
-					
+
 					$('#city').append('<option value="'+val.city_id+'" >'+val.city_name+'</option>');
 				});
-				
+
 			}
 		});
-			
-		
+
+
 		});
-		
-	
 
 
-		
+
+
+
 
 	 	/* post  */
 
@@ -523,7 +523,7 @@
 
 			$('.post_title').val('');
 
-			$('.details').summernote('code','');		 	 
+			$('.details').summernote('code','');
 
 		 	//$('#state').multiselect('select', '');
 
@@ -565,7 +565,7 @@
 
 			e.preventDefault();
 
-			
+
 
 			var $form = $(e.target);
 
@@ -573,7 +573,7 @@
 
 			$.ajax({
 
-				
+
 
 				url: "{{url('/')}}/profile/buyer/newpost",
 
@@ -585,8 +585,8 @@
 
 	    	    processData:false,
 
-				success: function(result) {	
-				
+				success: function(result) {
+
 					$(".body-overlay").hide();
 
 					$('.error-text').text('');
@@ -597,7 +597,7 @@
 
 					if(typeof result.error !='undefined' && result.error !=null){
 
-					 	
+
 
 					 	$.each( result.error, function( key, value ) {
 
@@ -621,7 +621,7 @@
 
 						},1000);
 
-					
+
 
 					}
 
@@ -645,13 +645,13 @@
 
 					}
 
-						
+
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -671,7 +671,7 @@
 
 					},1000);
 
-		    	} 	
+		    	}
 
 
 
@@ -683,7 +683,7 @@
 
 
 
-	 	
+
 
 	})();
 
@@ -703,7 +703,7 @@
 
 			beforeSend: function(){ $(".loaduploadshare").show(); },
 
-			success: function(result) {	
+			success: function(result) {
 
 
 
@@ -721,12 +721,12 @@
 
 					$.each( result.result, function( key, value ) {
 
-						
+
 
 						postdata[value.post_id] = value;
 
 
-                                              
+
 						var date = timeDifference(new Date(), new Date(Date.fromISO(value.created_at)));
 
 
@@ -781,7 +781,7 @@
 
 									      '<div class="panel panel-profile">'+
 
-											
+
 
 											'<div class="panel-heading overflow-h border1-bottom">'+
 
@@ -789,7 +789,7 @@
 
 											'</div>'+
 
-											
+
 
 											'<div id="postagentshowinpopup" class="panel-body no-padding" data-mcs-theme="minimal-dark">';
 
@@ -829,9 +829,9 @@
 					});
 
 					$(function(){
- 
+
 					     $('[rel="popover"]').popover({
-					   
+
 					        container: 'body',
 
 					        html: true,
@@ -849,7 +849,7 @@
 					        }
 
 					    }).on('click',function(e) {
-  
+
 
 					        e.preventDefault();
 
@@ -879,9 +879,9 @@
 
 			},
 
-		  	error: function(data) 
+		  	error: function(data)
 
-	    	{	
+	    	{
 
 	    		if(data.status=='500'){
 
@@ -909,7 +909,7 @@
 
 	 	$('#post_id').val(data.post_id);
 
-	 	$('.post_title').val(data.posttitle);	 	
+	 	$('.post_title').val(data.posttitle);
 
 	 	$('.details').summernote('code',data.details);
 
@@ -918,9 +918,9 @@
 	 	$('#state').multiselect('select', data.state);
 
 	 	$('#city').val(data.city);
-	 	
 
-	 	$('#area').val(data.area);	 	
+
+	 	$('#area').val(data.area);
 
 	 	$('.zip').val('');
 
@@ -944,11 +944,11 @@
 
 	 	$('#when_do_you_want_to_sell').val(data.when_do_you_want_to_sell);
 
-	 	
 
-	 	$('#price_range').val(data.price_range);	 	
 
-	 	$('#home_type').val(data.home_type);	 	
+	 	$('#price_range').val(data.price_range);
+
+	 	$('#home_type').val(data.home_type);
 
 
 
@@ -956,29 +956,29 @@
 
 	 	$(".firsttime_home_buyer_"+data.firsttime_home_buyer).prop("checked", true);
 
-	 	
+
 
 	 	$("input[name=do_u_have_a_home_to_sell]").removeAttr( "checked" );
 
 	 	$(".do_u_have_a_home_to_sell_"+data.do_u_have_a_home_to_sell).prop("checked", true);
 
-	 	
+
 
 	 	$("input[name=if_so_do_you_need_help_selling]").removeAttr( "checked" );
 
 	 	$(".if_so_do_you_need_help_selling_"+data.if_so_do_you_need_help_selling).prop("checked", true);
 
-	 	
+
 
 	 	$("input[name=interested_in_buying]").removeAttr( "checked" );
 
 	 	$(".interested_in_buying_"+data.interested_in_buying).prop("checked", true);
 
-	 	
 
- 		$('#bids_emailed').val(data.bids_emailed);	 	
 
- 		$('#do_you_need_financing').val(data.do_you_need_financing);	 	
+ 		$('#bids_emailed').val(data.bids_emailed);
+
+ 		$('#do_you_need_financing').val(data.do_you_need_financing);
 
 
 
@@ -1000,6 +1000,6 @@
 
 	}
 
-</script> 
+</script>
 
 @stop

@@ -51,7 +51,7 @@ class UploadAndShareController extends Controller
             );
 
             $messages = [
-                'name.required' => 'File Name field is required',
+                'name.required' => '‘Files name field is required',
                 'uploadshare.max' => 'File Upload should be less then 15MB.',
                 'uploadshare.mimes' => 'The uploaded file must be a file of type: jpeg, jpg, png, doc, pdf, docx.',
                 'uploadshare.required' => 'File upload is required'
@@ -88,7 +88,7 @@ class UploadAndShareController extends Controller
             );
 
             $messages = [
-                'name.required' => 'File Name field is required',
+                'name.required' => '‘Files name field is required',
                 'uploadshare.max' => 'File Upload should be less then 15MB.',
                 'uploadshare.required' => 'File upload is required'
             ];

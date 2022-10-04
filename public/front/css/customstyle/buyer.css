@@ -1,0 +1,219 @@
+@media(min-width: 1920px){
+    .container{
+        width: 1852px;
+    }
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Medium.woff2') format('woff2'),
+        url('Poppins-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Bold.woff2') format('woff2'),
+        url('Poppins-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-SemiBold.woff2') format('woff2'),
+        url('Poppins-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Regular.woff2') format('woff2'),
+        url('Poppins-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Light.woff2') format('woff2'),
+        url('Poppins-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Thin.woff2') format('woff2'),
+        url('Poppins-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body{
+    font-family: 'Poppins' !important;
+}
+.wrapper{background-color: #D5D8DF;}
+#home_made{background-color: #fff; padding: 100px 0px;}
+#home_made p{padding: 15px 0px;}
+#comparison{margin: 30px 0px;}
+.comparisontable {
+    max-width: 100%;
+    overflow: auto;
+}
+.comparison_table{
+    background-color: #D5D8DF;
+    border-spacing: 10px 0px;
+    border-collapse: separate;
+}
+.comparison_table th{
+    box-shadow: 0.25em 0.25em  0.25em  rgba( 0, 0, 0, 0.4 );
+}
+th span{
+    display: flex;
+    height: 100px;
+    align-items: end;
+    justify-content: center;
+    color: #000;
+}
+th p{
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    background: #59AB02;
+    margin: 0px;
+    padding: 6px 0px;
+    color: #000;
+}
+tr.odd td {
+    box-shadow: 0.25em 0.25em  0.25em  rgba( 0, 0, 0, 0.4 );
+    text-align: center;
+    background-color: #fff;
+    padding: 25px 0px;
+    color: #000;
+}
+tr.even td {
+    box-shadow: 0.25em 0.25em  0.25em  rgba( 0, 0, 0, 0.4 );
+    text-align: center;
+    background-color: #EAEAEA;
+    padding: 25px 0px;
+    color: #000;
+}
+#among p{
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 40px 0px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    word-spacing: 2px;
+    line-height: 24px;
+}
+#connect{padding-top: 100px; background: #fff;}
+.connects, .content{height: 412px;}
+.content{ width: 75%;margin: auto;text-align: left;padding: 25px 0px;}
+.content span strong{line-height: 25px;letter-spacing: 4px;text-transform: uppercase;}
+.content ul{padding: 0px 20px;line-height: 20px;}
+.content ul li{color: #fff; padding: 10px 0px;}
+.my_agent{display: flex;}
+#agent .col-md-4{margin: 30px 0px;}
+#agent h3{padding: 70px 0px;}
+.custom_row{display: flex; flex-wrap: wrap;}
+.my_agent{
+    margin: auto;
+    width: 135px;
+    height: 135px;
+    background: #59AB02;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80px;
+    margin-bottom: 20px;
+}
+.box{
+    background-image: url('../images/Layer 11.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 120px !important;
+}
+.register_form{
+    background-color: #000;
+    opacity: 0.7490196078431373;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.register_form p{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    line-height: 35px;
+}
+.register_form a{
+    text-decoration: none;
+    margin: auto;
+    background: #1c9d0d;
+    color: #fff;
+    padding: 8px 30px;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.register_form a:hover{
+    color:#000;
+    background-color: #fff;
+}
+#connect .col-md-6{padding: 0;}
+/* new styling */
+.bying_para{
+    padding: 85px 0px;
+}
+.home_selling {
+    padding-left: 20px;
+    margin-bottom: 3rem;
+}
+ul.home_selling li {
+    line-height: 32px;
+}
+ul.home_selling li::before {
+    content: "\2022";
+    color: #539011;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+a.sell_house:hover {
+    color: #539011;
+    border: 1px solid #539011;
+    background: transparent;
+}
+a.sell_house {
+    background: #539011;
+    padding: 12px;
+    color: #fff;
+    text-decoration: none;
+}
+@media(max-width: 768px){
+    .connect{
+        display: block;
+    }
+}
+@media(max-width: 768px){
+    .join-us{
+        width: 75%;
+    }
+}

@@ -228,7 +228,7 @@ class PostController extends Controller
 
     /* For post details for buyers only */
     public function PostDetailsForBuyer($post_id = null, $compare = null)
-    { 
+    {
 
         if (Auth::user()) {
             $view = array();
@@ -478,7 +478,7 @@ class PostController extends Controller
                 'price_range'        => 'required',
                 'home_type'          => 'required',
                 'need_Cash_back'     => 'required',
-                'zip.*'                => 'required|digits:5|numeric',
+                'zip.*' => 'required|digits:5|numeric',
             );
 
 
@@ -486,7 +486,7 @@ class PostController extends Controller
                 'details.required' => 'The specific requirements field is required',
                 'area.required' => 'The suburb / neighborhood field is required',
                 'zip.required' => 'The zip code field is required',
-                'home_type.required' => 'The property type field is required'
+                'home_type.required' => 'The Home Type Field is Required'
             ]);
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()]);
@@ -968,7 +968,7 @@ class PostController extends Controller
         );
 
         $selldetail_id = DB::table('agents_selldetails')->insertGetId($insert_arr);
-    
+
         if (isset($selldetail_id)) {
             $view['c_status'] = 'success';
             $view['c_message'] = 'Sell details upadted successfully';

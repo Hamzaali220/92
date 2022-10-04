@@ -25,4 +25,6 @@
 <!-- Switcher CSS -->
 <link rel="stylesheet" href="{{ URL::asset('front/css/switcher.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ URL::asset('front/css/spectrum.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ URL::asset('front/css/customstyle/buyer.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('front/css/customstyle/home.css') }}">
 @yield('style')

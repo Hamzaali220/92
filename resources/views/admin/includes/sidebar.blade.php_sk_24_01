@@ -26,7 +26,7 @@
       				<li><a href="{{route('admin.sellerbuyers')}}"><i class="fa  fa-list-ol"></i>Buyers/Sellers</a></li>
             </ul>
           </li>
-          
+
           <li class="treeview">
             <a href="#">
               <i class="fa fa-newspaper-o"></i> <span>Posts</span>
@@ -66,14 +66,14 @@
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="ion ion-university"></i> <span>Skills & Specialization</span>
+              <i class="ion ion-university"></i> <span>'Skills / Specialization</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{route('admin.specialization')}}"><i class="fa fa-plus-circle"></i>Skills Add</a></li>
-              <li><a href="{{route('admin.specializations')}}"><i class="fa fa-list-ol"></i>Skills List</a></li> 
+              <li><a href="{{route('admin.specializations')}}"><i class="fa fa-list-ol"></i>Skills List</a></li>
             </ul>
           </li>
 

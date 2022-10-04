@@ -14,13 +14,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Skills & Specialization
-        <small>Skills & Specialization list</small>
+        'Skills / Specialization
+        <small>'Skills / Specialization list</small>
       </h1>
       <ol class="breadcrumb">
 	  	<li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{route('admin.specializations')}}">Skills & Specialization</a></li>
-        <li class="active">Skills & Specialization list</li>
+        <li><a href="{{route('admin.specializations')}}">'Skills / Specialization</a></li>
+        <li class="active">'Skills / Specialization list</li>
       </ol>
     </section>
     <section class="content">
@@ -29,8 +29,8 @@
           <div class="box">
             <div class="box-header text-right">
 				@if((isset(session('user_access_data')->skillchange) && session('user_access_data')->skillchange == 1) OR session("userid") == 1)
-				<h3 class="box-title"><a class="btn btn-success" href="{{route('admin.specialization')}}">	
-					<i class="fa fa-plus fa-xs"></i> Add Skills & Specialization</a>			
+				<h3 class="box-title"><a class="btn btn-success" href="{{route('admin.specialization')}}">
+					<i class="fa fa-plus fa-xs"></i> The Skills field is required</a>
 				</h3>
 				@endif
             </div>
@@ -53,8 +53,8 @@
                   <th></th>
                   <th></th>
                   <th></th>
-                  <th></th>                  
-                  <th></th>              
+                  <th></th>
+                  <th></th>
                 </tr>
                 </tfoot>
               </table>
@@ -75,17 +75,17 @@
 <script type="text/javascript" src="{{ URL::asset('admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript">
-  
-  var table1 = $('#AreaList').DataTable({ 	
-		"processing": true, 	
-		"serverSide": true,	
-		"pageLength": 10,		
+
+  var table1 = $('#AreaList').DataTable({
+		"processing": true,
+		"serverSide": true,
+		"pageLength": 10,
 		//"lengthMenu": [ [10, 25, 50,100], [10, 25, 50,100] ],
-		"ordering": false, 
-		"language": {	
-		"processing": "<img width='50' src='{{ asset('/assets/ajax-loading-large.gif')}}' >"	
-		},		
-		"ajax": {	
+		"ordering": false,
+		"language": {
+		"processing": "<img width='50' src='{{ asset('/assets/ajax-loading-large.gif')}}' >"
+		},
+		"ajax": {
 			"url": "{{ url('/agentadmin/getSpecializationList') }}",
 		},
 		"fnDrawCallback": function(oSettings) {
@@ -99,9 +99,9 @@
 		},
 		"fnStateLoad": function (oSettings) {
 			return JSON.parse(localStorage.getItem('offersDataTables'));
-		}		
+		}
 	});
-	
+
 	function confirm_function(id,messages)
 	{
 		var myCheckboxes=[];
@@ -115,7 +115,7 @@
 						action: function(dialogItself){
 						dialogItself.close();
 							$.ajax({
-								url: "{{ url('/agentadmin/deleteSpecialization') }}", 
+								url: "{{ url('/agentadmin/deleteSpecialization') }}",
 								type: 'post',
 								data: { id: id,tag:'Delete',_token :"{{csrf_token()}}" },
 								success:function(data){
@@ -154,7 +154,7 @@
 								var table = $('#AreaList').DataTable();
 									table.ajax.reload();
 									}
-								});							
+								});
 						}
 					}, {
 						label: 'Close',	cssClass: 'btn-primary',

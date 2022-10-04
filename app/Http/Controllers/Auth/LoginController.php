@@ -110,13 +110,13 @@ class LoginController extends Controller
         $rules = array(
             'email'                 => 'required|email',
             'password'                 => 'required|min:6',
-           'g-recaptcha-response' => 'required|captcha'
+        //    'g-recaptcha-response' => 'required|captcha'
         );
         $input_arr = array(
             'password'              => $request->input('password'),
             'email'                 => $request->input('email'),
             'agents_users_role_id'     => $request->input('agents_users_role_id'),
-           'g-recaptcha-response' => $request->input('g-recaptcha-response')
+        //    'g-recaptcha-response' => $request->input('g-recaptcha-response')
         );
         $validator = Validator::make($input_arr, $rules);
         if ($validator->fails()) :

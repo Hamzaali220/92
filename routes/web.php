@@ -58,7 +58,7 @@ Route::group(['middleware' => ['lang', 'guest']], function () {
 	Route::get('/login', ['as' => 'login', 'uses' => 'Front\HomeController@login']);
 	Route::post('/login', 'Auth\LoginController@login');
 	Route::post('/login_api', 'Auth\LoginController@login_api');
-	
+
 	/* Mobile */
 	Route::post('/mobile/login_api', 'Auth\LoginController@login_api');
 	Route::post('/mobile/signup1', 'Front\HomeController@signup');

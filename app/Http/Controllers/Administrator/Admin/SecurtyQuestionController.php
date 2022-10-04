@@ -75,7 +75,6 @@ class SecurtyQuestionController extends Controller
 
 	public function save(Request $request)
     {
-
         $rules = array(
             'question'  => 'required|string|unique:agents_securty_question',
 		);
@@ -109,7 +108,7 @@ class SecurtyQuestionController extends Controller
 			else:
 				$data_arr['created_at']=date('Y-m-d H:i:s');
 				DB::table('agents_securty_question')->insertGetId($data_arr);
-			 	return Redirect::back()->with('success','security question has been created successfully.');
+			 	return Redirect::back()->with('success','Security Question has been created successfully.');
 			endif;
 
 			 return Redirect::back()->with('dbError','Oops Something went wrong !!');

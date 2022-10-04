@@ -8,7 +8,7 @@
           <p>{{session('username')}}</p>
           <?php
           $user_access_data = session('user_access_data');
-          
+
           $agentread = 1;
           $agentchange = 1;
           $bsread = 1;
@@ -35,7 +35,7 @@
           $areachange = 1;
 
           if(session('userid') !== 1){
-            
+
             $agentread = $user_access_data->agentread;
             $agentchange = $user_access_data->agentchange;
             $bsread = $user_access_data->bsread;
@@ -62,7 +62,7 @@
             $areachange = $user_access_data->areachange;
 
           }
-           
+
           ?>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -174,7 +174,7 @@
           @if($skillread == 1 OR $skillchange == 1)
           <li class="treeview">
             <a href="#">
-              <i class="ion ion-university"></i> <span>Skills & Specialization</span>
+              <i class="ion ion-university"></i> <span>'Skills / Specialization</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -184,7 +184,7 @@
               <li><a href="{{route('admin.specialization')}}"><i class="fa fa-plus-circle"></i>Skills Add</a></li>
               @endif
               @if($skillread == 1)
-              <li><a href="{{route('admin.specializations')}}"><i class="fa fa-list-ol"></i>Skills List</a></li> 
+              <li><a href="{{route('admin.specializations')}}"><i class="fa fa-list-ol"></i>Skills List</a></li>
               @endif
             </ul>
           </li>
@@ -236,7 +236,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-           
+
            <li><a href="{{route('admin.package')}}"><i class="fa fa-list-ol"></i> Package list</a></li>
 
            <li><a href="{{route('admin.adrequests')}}"><i class="fa fa-list-ol"></i> Ad Requests</a></li>
@@ -277,7 +277,7 @@
             </ul>
           </li>
           @endif
-          
+
           <li class="treeview">
             <a href="#">
               <i class="ion ion-android-pin"></i> <span>Cities</span>
@@ -291,7 +291,7 @@
             </ul>
           </li>
 
-          @if($arearead == 1 OR $areachange == 1) 
+          @if($arearead == 1 OR $areachange == 1)
           <li class="treeview">
             <a href="#">
               <i class="ion ion-android-pin"></i> <span>Areas</span>
@@ -300,10 +300,10 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @if($areachange == 1) 
+              @if($areachange == 1)
               <li><a href="{{route('admin.area')}}"><i class="fa fa-plus-circle"></i> Add Areas</a></li>
               @endif
-              @if($arearead == 1) 
+              @if($arearead == 1)
               <li><a href="{{route('admin.areas')}}"><i class="fa fa-list-ol"></i> Areas</a></li>
               @endif
             </ul>
@@ -330,17 +330,17 @@
               </span>
             </a>
             <ul class="treeview-menu">
-           
+
            <li><a href="{{route('admin.conversation')}}"><i class="fa fa-comments-o" aria-hidden="true"></i> Conversations List</a></li>
 
 
             </ul>
           </li>
 
-      
+
       </ul>
 
 
-         
+
     </section>
   </aside>
