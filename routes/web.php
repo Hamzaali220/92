@@ -130,6 +130,7 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 	Route::post('/profile/agent/editfields', 'Administrator\ProfileController@editfields');
 	Route::post('/profile/agent/editprofilepic', 'Administrator\ProfileController@editprofilepic');
 	Route::post('/profile/agent/editAgentPersonalProfile', 'Administrator\ProfileController@editagentprofile');
+	Route::post('/profile/agent/sellDetails', 'Administrator\ProfileController@updateSellDetials')->name('update_sell');
 	// Route::post('/profile/agent/', 'Administrator\ProfileController@editagentprofessionalprofile');
 	Route::post('/profile/agent/editagentprofile', 'Administrator\ProfileController@editagentprofessionalprofile');
 	Route::post('/profile/agent/editagentprofessionalprofile', 'Administrator\ProfileController@editagentprofessionalprofile');
@@ -342,7 +343,8 @@ Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\Pr
 
 	# commision payment
 	Route::get('/pendinginvoices', 'Administrator\PaymentController@pendinginvoices');
-	Route::post('/pay_pendinginvoices', 'Administrator\PaymentController@pay_pendinginvoices');
+	Route::post('/pay_pendinginvoices', 'Administrator\PaymentController@pay_pendinginvoices')->name('pay_pendinginvoices');
+	Route::get('/pending/pay/{id}', 'Administrator\PaymentController@payitnow')->name('payitnow');
 	Route::post('/postAgentPayment', 'Administrator\PaymentController@postAgentPayment');
 	Route::post('/downloadinvoice', 'Administrator\PaymentController@downloadinvoice');
 

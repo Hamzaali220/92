@@ -324,8 +324,24 @@ class PaymentController extends Controller
 
     public function pay_pendinginvoices(Request $request)
     {
-        $pending_invoices = $request->input('pending_invoices');
+        $invoices=$request->input('pending_invoices');
+        $invoices= explode (",", $invoices);
+        $pending_invoices = $invoices;
+        // $pending_invoices = $request->input('pending_invoices');
+        // dd($pending_invoices);
         $selldetails = DB::table('agents_selldetails')->whereIn('id', $pending_invoices)->get();
+        $view['sell_ids'] = $pending_invoices;
+        $view['sell_details'] = $selldetails;
+        $view['user'] = $user = Auth::user();
+        $view['userdetails'] = $userdetails = Userdetails::find($user->id);
+        $view['user_type'] = env('user_role_' . $user->agents_users_role_id);
+        return view('dashboard.user.agents.agent-payment', $view);
+    }
+    public function payitnow($id)
+    {   $invoices=[$id];
+        $pending_invoices = $invoices;
+        $selldetails = DB::table('agents_selldetails')->whereIn('id', $pending_invoices)->get();
+        // dd($pending_invoices);
         $view['sell_ids'] = $pending_invoices;
         $view['sell_details'] = $selldetails;
         $view['user'] = $user = Auth::user();
@@ -367,7 +383,7 @@ class PaymentController extends Controller
                         [
                             'amount' => ($total_sell),
                             'discount' => '0',
-                            'taxes' => '',
+                            'taxes' => '0',
                             'payment' => 'Stripe',
                             'user_id' => $user->id,
                             'stripeToken' => $token
@@ -382,7 +398,7 @@ class PaymentController extends Controller
                         'amount' => ($total_sell * 100),
                         'currency' => 'inr',
                         'source' => $token,
-                        'description' => 'Agent paid for sell '
+                        'description' => 'Agent paid for sell'
                     ]);
 
                     if ($payment_response->status == 'succeeded') {
@@ -395,8 +411,6 @@ class PaymentController extends Controller
                         #update payment details
                         $updates = DB::table('agents_payment')->where('payment_id', $payment_id)
                             ->update($payment_update_arr);
-
-
                         $sell_details_arr = array(
                             'payment_id' => $payment_id,
                             'receipt_url' => $payment_response->receipt_url,
@@ -434,7 +448,7 @@ class PaymentController extends Controller
 
         $view['status'] = $response['status'];
         $view['message'] = $response['message'];
-        $view['receipt_url'] = $response['receipt_url'];
+        // $view['receipt_url'] = $response['receipt_url'];
 
         return view('dashboard.user.agents.payment-status', $view);
     }

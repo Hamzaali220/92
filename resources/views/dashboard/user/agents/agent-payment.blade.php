@@ -101,9 +101,10 @@ $intent = \Stripe\PaymentIntent::create([
 									<tbody>
 										<tr>
 											<th>Agent Name</th>
-											<td colspan="2">Rakesh Mishra</td>
+											<td colspan="2">{{$userdetails['name']}}</td>
 											<th>Agent Email</th>
-											<td colspan="2">rakesh.mishra@92agents.com</td>
+											<td colspan="2">{{$userdetails['email']}}</td>
+											{{-- <td colspan="2">rakesh.mishra@92agents.com</td> --}}
 										</tr>
 										<tr>
 											<th colspan="6">Sell Details</th>
@@ -248,7 +249,7 @@ card.addEventListener('change', function(event) {
 var form = document.getElementById('agent-payment-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-
+debugger
   stripe.createToken(card).then(function(result) {
     if (result.error) {
       // Inform the user if there was an error.
@@ -263,6 +264,7 @@ form.addEventListener('submit', function(event) {
 
 // Submit the form with the token ID.
 function stripeTokenHandler(token) {
+	debugger
   // Insert the token ID into the form so it gets submitted to the server
   var form = document.getElementById('agent-payment-form');
   var hiddenInput = document.createElement('input');

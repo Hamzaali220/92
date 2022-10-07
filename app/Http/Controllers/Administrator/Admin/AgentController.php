@@ -395,7 +395,7 @@ class AgentController extends Controller
         $user = auth()->guard('admin')->user();
         $data['id'] = $id;
         $post = new Post();
-        $post_result_data = $post->AppliedAgentsListAll(
+        $post_result_data = $post->AppliedPostListGetForAgents(
             0,
             array(
                 'agents_users_conections.to_id' => $id,
@@ -409,6 +409,7 @@ class AgentController extends Controller
             ),
             null
         );
+        // dd($post_result_data);
         $data['post_list'] = $post_result_data;
         return view('admin.pages.agent.closingdatereport', $data);
     }

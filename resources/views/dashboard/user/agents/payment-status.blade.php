@@ -43,7 +43,7 @@
 										?>
 										<i class="fa fa-check fa-5x" aria-hidden="true" style="color:green;"></i>
 										<h2>{!! $message !!}</h2>
-										<a href="{!! $receipt_url !!}" target="_blank" class="btn-u payment-btn">View Receipt</a>
+										{{-- <a href="{!! $receipt_url !!}" target="_blank" class="btn-u payment-btn">View Receipt</a> --}}
 										<?php
 									} else {
 										?>

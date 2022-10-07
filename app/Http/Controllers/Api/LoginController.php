@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Userdetails;
 use Carbon\Carbon;
+// Laravel\Passport\PassportServiceProvider::class,
 
 class LoginController extends Controller
 {
@@ -53,32 +54,33 @@ class LoginController extends Controller
             'email'                 => 'required|email',
             'password'                 => 'required'
         );
-
+        
         $input_arr = array(
             'password'              => $request->input('password'),
             'email'                 => $request->input('email'),
             'agents_users_role_id'     => $request->input('agents_users_role_id')
         );
         $validator = Validator::make($input_arr, $rules);
-
+        
         if ($validator->fails()) :
             return response()->json(['error' => $validator->errors()]);
-        else :
-            $user = new User;
-
-            $data1 = $data2 = [];
-            if ($input_arr['agents_users_role_id'] == 3 || $input_arr['agents_users_role_id'] == 2) {
-                $data1 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => 2));
-                $data2 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => 3));
-            } else {
-                $data1 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => $input_arr['agents_users_role_id']));
-            }
-
-            $data = (!empty($data1)) ? $data1 : $data2;
-
+            else :
+                $user = new User;
+                
+                $data1 = $data2 = [];
+                if ($input_arr['agents_users_role_id'] == 3 || $input_arr['agents_users_role_id'] == 2) {
+                    $data1 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => 2));
+                    $data2 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => 3));
+                } else {
+                    $data1 = $user->getByEmailOrId(array('email' => $input_arr['email'], 'role' => $input_arr['agents_users_role_id']));
+                }
+                
+                $data = (!empty($data1)) ? $data1 : $data2;
+                
             // $data = $user->getByEmailOrId(array('email'=>$input_arr['email'], 'role'=>$input_arr['agents_users_role_id']));
 
             if (!empty($data)) {
+                
                 if (!Hash::check($input_arr['password'], $data->password)) {
                     return response()->json(["error" => "Email and password combination is incorrect!", "status" => '101']);
                 }
@@ -100,6 +102,7 @@ class LoginController extends Controller
                     return response()->json(["error" => "Email not found in the Buyer/Seller database!", "status" => '101']);
                 }
                 if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) :
+                    
                     $userupdate = User::find(Auth::user()->id);
                     $userupdate->agents_users_role_id    =    $input_arr['agents_users_role_id'];
                     $userupdate->login_status            =     'Online';
@@ -107,7 +110,7 @@ class LoginController extends Controller
                     $userupdate->save();
                     $user = $request->user();
 
-
+// dd($user);
                     # User details
                     $userdetails = Userdetails::find(Auth::user()->id);
                     $details_arr = array(
@@ -116,12 +119,13 @@ class LoginController extends Controller
                         'lname' => $userdetails->lname,
                         'profile_pic' => url('/assets/img/profile/' . $userdetails->photo)
                     );
-
                     $tokenResult = $user->createToken('Personal Access Token');
+                    // dd($user);
                     $token = $tokenResult->token;
                     if ($request->remember_me)
                         $token->expires_at = Carbon::now()->addWeeks(1);
                     $token->save();
+                    // dd($token);
                     return response()->json([
                         'status' => '100',
                         'access_token' => $tokenResult->accessToken,

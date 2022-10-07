@@ -333,7 +333,19 @@ class PostController extends Controller
                     'updated_at' => date("Y-m-d h:i:s")
                 );
                 DB::table('agents_payment')->insert($paymentDetails);
-                /* Save Payment Data */
+                
+            
+                // $where = array();
+                // // $formate = date('M d Y', strtotime($request->date));
+                // $where['id'] = $request->id;
+                // // $where['status'] = '1';
+                // $insert_arr = array(
+                //     'sale_date' =>  date('Y-m-d H:i:s'),
+                //     'sale_price' => $request->price,
+                // );
+        
+                // DB::table('agents_selldetails')->where($where)->update($insert_arr);
+                // /* Save Payment Data */
             }
             if ($post->save()) {
                 return response()->json(["statys" => 2, "msg" => "Closing date added successfully."]);

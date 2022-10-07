@@ -602,9 +602,9 @@ class ProfileController extends Controller
                 $message->from("92agent@92agents.com", "92Agents");
             });
 
-            return response()->json(["msg"     => "Password updated successfully"]);
+            return response()->json(["msg"=> "Password updated successfully"]);
         } else {
-            return response()->json(["error"     => array('oldpassword' => array('0' => 'Old password is incorrect.'))]);
+            return response()->json(["error" => array('oldpassword' => array('0' => 'Old password is incorrect.'))]);
         }
     }
 
@@ -846,6 +846,26 @@ class ProfileController extends Controller
     
     }
 
+
+//update sell details records...
+    public function updateSellDetials(Request $request)
+    {
+        $where = array();
+        $formate = date('M d Y', strtotime($request->date));
+        $where['id'] = $request->id;
+        // $where['status'] = '1';
+        $insert_arr = array(
+            'sale_date' =>  date('Y-m-d H:i:s'),
+            'sale_price' => $request->price,
+            'agent_comission' =>$request->comission,
+            'address' => $request->address,
+        );
+
+        DB::table('agents_selldetails')->where($where)->update($insert_arr);
+        return redirect()->back();
+    
+    }
+
     /* For get public user */
     public function publicUserGet($id = null, $role = null)
     {
@@ -875,7 +895,9 @@ class ProfileController extends Controller
                     'as.receipt_url', 
                     'as.sale_date', 
                     'as.sale_price',
-                    'ap.posttitle'
+                    'ap.posttitle',
+                    'as.status',
+                    "as.agent_comission"
                 )
                 ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
                 ->get();

@@ -60,6 +60,7 @@ class SignUpController extends Controller
     /*signup step 1*/
     public function signup(Request $request)
     {
+        // dd('ddd');
         $postStep = $request->input('step');
         $roleId = $request->input('agents_users_role_id');
         $rules = array();

@@ -75,17 +75,19 @@
                 </thead>
                 <tbody>
 				<?php
-					$i = 1;
+					$i = 0;
 					foreach($post_list as $post_details):
 				?>
+				{{dd($post_details);}}
 					<tr>
-						<td><?= $i ?></td>
-						<td><?= $post_details->posttitle ?></td>
-						<td><?= $post_details->name ?></td>
-						<td><?= date("d/m/Y",strtotime($post_details->agent_select_date)) ?></td>
+						<td><?php $i ?></td>
+						<td>{{$post_details[$i]->posttitle}}</td>
+						<td><?php $post_details[$i]->name ?></td>
+						{{dd('d');}}
+						<td><?php date("d/m/Y",strtotime($post_details[$i]->agent_select_date)) ?></td>
 						<td>
-							<?= (isset(($post_details->closing_date)))
-									? date("d/m/Y",strtotime($post_details->closing_date))
+							<?php (isset(($post_details[$i]->closing_date)))
+									? date("d/m/Y",strtotime($post_details[$i]->closing_date))
 									: "Not set yet !";
 							?>
 						</td>
