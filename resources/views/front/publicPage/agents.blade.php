@@ -5,112 +5,166 @@
 @section('content')
 <?php  $topmenu='Agents'; ?>
 @include('front.include.sidebar')
+<section id="main" style="padding: 70px 0px;">
+    <div class="container" style="padding: 30px 0px">
+        <div class="row">
 
-<!-- Main Section -->
-<section id="main">
-    <!-- Title, Breadcrumb -->
-    <div class="breadcrumb-wrapper">
-        <div class="pattern-overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-                        <h2 class="title">Agent</h2>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-                        <div class="breadcrumbs pull-right">
-                            <ul>
-                                <li>You are Now on:</li>
-                                <li><a href="{{url('/')}}">Home</a></li>
+            <div class="col-md-6">
+                <img src="{{ URL::asset('front/img/agent/broker-giving-keys_11zon.jpg') }}" style="width: 500px; height: 400px; padding-top: 45px; ">
+            </div>
 
-                                <li>Agent</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <h1 style="font-size: 36px">What is Lorem Ipsum?</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book.</p>
+                <ul class="bullet-points list-unstyled">
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                </ul>
+                <a href="#" class="btn-outline "><span>More Details</span></a>
             </div>
         </div>
     </div>
-    <!-- /Title, Breadcrumb -->
-    <!-- /Main Content -->
-    <div class="content-about margin-top60" style="margin-bottom: 60px;">
-        <div class="container">
-            <div class="row">
-                <div class="posts-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <h2>Want to become one of the most-sought-after real estate agent? Welcome to 92
-                        Agents.</h2>
-                    <p>
-                        We bring sellers and buyers looking for qualified agents on to a single platform. Get offers,
-                        help them out and make earning easy.
-                    </p>
-                    <ul class="list icons list-unstyled">
-                        <li><i class="fa fa-check"></i> Create your profile</li>
-                        <li><i class="fa fa-check"></i> Get notified when sellers and buyers post their requirements
-                        </li>
-                        <li><i class="fa fa-check"></i> Impress them with what you’ve got</li>
-                        <li><i class="fa fa-check"></i> Get hired</li>
-                        <li><i class="fa fa-check"></i>Complete the job and make easy money</li>
-                    </ul>
+    <div class="container" style="padding-top: 40px">
+        <div class="row">
 
-
-                </div>
-                <div class="posts-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <img src="{{ URL::asset('front/img/agents.jpg') }}" alt="about" width="650">
-                </div>
+            <div class="col-md-6">
+                <h1 style="font-size: 36px">What is Lorem Ipsum?</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book.</p>
+                <ul class="bullet-points list-unstyled">
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                    <li>Lorem Ipsum is simply dummy</li>
+                </ul>
+                <a href="#" class="btn-outline"><span>More Details</span></a>
             </div>
 
-
-
-            <!-- /Promo -->
+            <div class="col-md-6"><img class="img-fluid" src="{{ URL::asset('front/img/agent/agent3.jpg') }}"></div>
         </div>
     </div>
-    <div class="container">
-        <div class="startNow">
-
-            <p>Are you not interested to make a head start? Then, what are you waiting for?<br>
-                Create your profile and make your first earning today!</p>
-        </div>
-    </div>
-    <div class="content-about margin-top60" style="margin-bottom: 60px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-5">
-                    <img src="{{URL::asset('front/img/agent-single.png')}}" />
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <div class="posts-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h2>Perks you get only @92Agents:</h2>
-                        {{-- <p>
-                            Build your profile and write about your qualifications, previous work experience and other
-                            skills that can impress your clients the most. Every business successful business deal will
-                            enable you to earn positive comments and reviews. It will further make your profile weigh more
-                            higher than other agents present in the market.
-                        </p> --}}
-                        <ul class="list icons list-unstyled">
-                            <li><i class="fa fa-check"></i> <strong>No more running for leads:</strong> Instead of running for leads,
-                                concentrate building your skills while we bring sellers and buyers to you.</li>
-                            <li><i class="fa fa-check"></i> A Unique platform: Your profile will be visible to thousand of
-                                sellers and buyers at a time. So, the probability of you getting hired is more.</li>
-                            <li><i class="fa fa-check"></i> Meet genuine customers: We bring potential customers to you. So,
-                                rest assured of making a quality business.</li>
-                            <li><i class="fa fa-check"></i> Talk to them: We have personal chat feature so that you can talk
-                                to your customer directly before closing any deal.</li>
-                            <li><i class="fa fa-check"></i>24/7 support: Feel free to raise your issue to us at any time.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="Lower-banner container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">What is Lorem Ipsum?</h1>
+                <p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <div class="text-center"><img class="img-fluid" src="{{ URL::asset('front/img/agent/agent4.jpg') }}"></div>
             </div>
-            <div class="row d-flex justify-content-center" style="display: flex;justify-content:center">
-                <a href="#" class="btn btn-color nesusersignup" data-target="modalagent" style="font-size: 20px;"><strong>Click here to get more clients &#10132; </strong></a>
-            </div>
-
-
-            <!-- /Promo -->
         </div>
     </div>
-    <!-- /Main Content -->
 </section>
-<!-- /Main Section -->
 
 @endsection
+<style>
+    body{
+        font-family: 'Poppins' !important;
+    }
+    .Lower-banner h1{margin-bottom: 0px; margin-top: 40px;}
+    .bullet-points {
+        position: relative;
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 35px;
+        font-weight: 500;
+    }
+
+    ul {
+        display: block;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+    }
+
+    .bullet-points li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 2px solid #fff;
+        border-radius: 100%;
+        background: #59ab02;
+        position: absolute;
+        left: -4px;
+    }
+
+    li {
+        margin-left: 20px;
+    }
+
+    .bullet-points:before {
+        content: "";
+        width: 2px;
+        background: #59ab02;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 13px;
+    }
+
+    p {
+        line-height: 29px;
+    }
+
+    p {
+        margin: 0 0 30px;
+    }
+
+    .Lower-banner p {
+    font-size: 16px;
+    color: #393939;
+    font-weight: 300;
+    width: 75%;
+    margin: auto;
+    padding: 35px 0px;
+    }
+
+    ul.bullet-points.list-unstyled li {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 30px 28px;
+        font-weight: 600;
+    }
+
+    .btn-outline {
+        color: #000;
+    }
+
+    .btn-outline {
+        font-size: 20px;
+        line-height: 24px;
+        border: 1px solid #59ab02;
+        background: none;
+        padding: 13px 30px 7px;
+        border-radius: 4px;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .Lower-banner {
+
+        background: url('./house-1867187_960_720.jpg');
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: black;
+    }
+</style>
 <!-- content end -->
