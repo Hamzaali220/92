@@ -8,7 +8,7 @@
     <section id="mainabout" style="background-image: url('{{ asset('front/img/about/aboutheader.jpg')}}'">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 wow fadeInUp animated">
                     <div class="aboutcontent">
                         <h1 class="heading">Lorem Ipsum<br>What is Lorem Ipsum?</h1>
                     <p class="paragaraph">
@@ -27,7 +27,7 @@
     <section id="lower">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 wow fadeInUp animated">
                     <p class="text-center heading" style="padding-top: 50px ">Lorem Ipsum is simply dummy text</p>
                     <p class="text-center paragaraph" style="padding-bottom: 50px ">Lorem Ipsum is simply dummy text of the
                         printing and typesetting industry. Lorem Ipsum has been the industry's standard the industry's the
@@ -37,7 +37,7 @@
         </div>
         <div class="container custom-container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInLeft animated">
                     <p class="heading">Lorem Ipsum is simply dummy text of the printing<br></p>
                     <p class="paragaraph">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -48,7 +48,7 @@
                     <button class="btn btn-warn">Learn More</button>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInRight animated">
                     <div class="img">
                         <img src="{{ URL::asset('front/img/about/about1.jpg') }}" alt="" srcset="">
                     </div>
@@ -57,12 +57,12 @@
         </div>
         <div class="container custom-container">
             <div class="row" style="margin-bottom: 60px">
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInLeft animated">
                     <div class="img">
                         <img src="{{ URL::asset('front/img/about/about2.jpg') }}" alt="" srcset="">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInRight animated">
                     <p class="heading">Lorem Ipsum is simply dummy text of the printing<br></p>
                     <p class="paragaraph">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -76,7 +76,7 @@
         </div>
         <div class="container custom-container">
             <div class="row" style="margin-bottom: 60px">
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInLeft animated">
                     <p class="heading">Lorem Ipsum is simply dummy text of the printing<br></p>
                     <p class="paragaraph">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -87,7 +87,7 @@
                     <button class=" btn btn-warn ">Learn More</button>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 wow fadeInRight animated">
                     <div class="img">
                         <img src="{{ URL::asset('front/img/about/about3.jpg') }}" alt="" srcset="">
                     </div>
