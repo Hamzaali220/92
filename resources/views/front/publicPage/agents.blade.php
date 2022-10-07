@@ -9,11 +9,11 @@
     <div class="container" style="padding: 30px 0px">
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-6 wow fadeInUp animated">
                 <img src="{{ URL::asset('front/img/agent/broker-giving-keys_11zon.jpg') }}" style="width: 500px; height: 400px; padding-top: 45px; ">
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 wow fadeInDown animated">
                 <h1 style="font-size: 36px">What is Lorem Ipsum?</h1>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
@@ -33,7 +33,7 @@
     <div class="container" style="padding-top: 40px">
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-6 wow fadeInLeft animated">
                 <h1 style="font-size: 36px">What is Lorem Ipsum?</h1>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
@@ -49,12 +49,12 @@
                 <a href="#" class="btn-outline"><span>More Details</span></a>
             </div>
 
-            <div class="col-md-6"><img class="img-fluid" src="{{ URL::asset('front/img/agent/agent3.jpg') }}"></div>
+            <div class="col-md-6 wow fadeInRight animated"><img class="img-fluid" src="{{ URL::asset('front/img/agent/agent3.jpg') }}"></div>
         </div>
     </div>
     <div class="Lower-banner container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 wow fadeInUp animated">
                 <h1 class="text-center">What is Lorem Ipsum?</h1>
                 <p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting
                     industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
