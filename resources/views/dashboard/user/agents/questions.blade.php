@@ -5,9 +5,9 @@
 @stop
 @section('title', 'Question')
 @section('content')
-<?php  
-	$topmenu='Other_Resources'; 
- 	$activemenu = 'Questions'; 
+<?php
+	$topmenu='Other_Resources';
+ 	$activemenu = 'Questions';
  ?>
 @include('dashboard.include.sidebar')
 
@@ -35,7 +35,7 @@
 							<a class="cursor pull-right btn btn-default new-ask-question" data-toggle="tab"><i class="fa fa-plus"></i> Add </a>
 						</div>
 
-						<div class="panel-body whaite-bg" >							
+						<div class="panel-body whaite-bg" >
 							<div class="">
 								<div id="enters-questions-to-ask" class="sky-form">
 									<div class="tab-v1">
@@ -49,7 +49,7 @@
 											<!-- Buyer -->
 											<div class="tab-pane fade in active" id="Buyer">
 												<div id="BuyerQuestions" class="sky-form">
-													<h2><b>Buyer Questions </b></h2>								
+													<h2><b>Buyer Questions </b></h2>
 												</div>
 											</div>
 
@@ -60,7 +60,7 @@
 												</div>
 											</div>
 										</div>
-									</div>								
+									</div>
 								</div>
 								<div class="body-overlay_questions body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 							</div>
@@ -83,8 +83,8 @@
 						<div class="panel-heading overflow-h air-card">
 							<h2 class="heading-sm pull-left">Test Questions  </h2>
 						</div>
-						<div class="" >						
-							<div id="enters-default-answers" class="sky-form">						
+						<div class="" >
+							<div id="enters-default-answers" class="sky-form">
 							</div>
 							<div class="body-overlay_default body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 						</div>
@@ -92,7 +92,7 @@
 					</div>
 					<!-- Default Proposals -->
 				</div>
-				@endif		
+				@endif
 			</div>
 			<!-- End Profile Content -->
 		</div><!--/end row-->
@@ -138,7 +138,7 @@
 										<label class="radio"><input type="radio" name="survey" class="survey_1" value="1" ><i class="rounded-x"></i>Yes</label>
 										<label class="radio"><input type="radio" name="survey" class="survey_2" value="0" checked><i class="rounded-x"></i>No</label>
 									</div>
-								</div>							
+								</div>
 							</section>
 						</fieldset>
 					</div>
@@ -168,7 +168,7 @@
 						<br>
 						<div class="body-overlay body-overlay-survey"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 						<div id="surveyerrormsgshow"> </div>
-						<p class="sure">Are you sure that you need to add question to the Survey.</p>
+						<p class="sure">Are you sure that you need to add question from the Survey’.</p>
 					</div>
 
 					<div class="modal-footer">
@@ -182,7 +182,7 @@
 	<!-- praposal -->
 	<div class="modal fade" id="open-proposal-share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
-			<div class="modal-content not-top">	
+			<div class="modal-content not-top">
 				<div id="loadproposalshare"  class="loadproposalshare body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
 
 				<div class="modal-header">
@@ -235,7 +235,7 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script>
 	$(function() {
@@ -259,7 +259,7 @@
 	          }
         });
     });
-</script>	
+</script>
 
 <script>
 	var important_data = [];
@@ -280,15 +280,15 @@
 
 			beforeSend: function(){$(".body-overlay_default").show();},
 
-			success: function(result) {	
+			success: function(result) {
                 console.log(result);
 				$(".body-overlay_default").hide();
 				$.each( result[0], function( key, val ) {
-					var htm = 
+					var htm =
 
 								'<div class="panel-heading border1-bottom col-md-12">'+
 
-									
+
 
 									'<h4 class="panel-title question-title"><span>'+
 
@@ -302,7 +302,7 @@
 
 								 	'</h4>'+
 
-								 	
+
 
 								 	'<div id="collapse-answer-'+key+'" class="panel-collapse collapse panel-body padding-0 margin-top-10">'+
 
@@ -328,7 +328,7 @@
 
 											'<div class="col-md-2 margin-top-5"> <button type="submit" class="btn-u ladda-button pull-right">Save</button></div>'+
 
-									
+
 
 										'{!! Form::close() !!}'+
 
@@ -382,9 +382,9 @@
 
 				data: {question_id:question_id,answers:answers,_token : '{{ csrf_token() }}',from_id : '{{ $user->id }}',from_role : '{{ $user->agents_users_role_id }}'},
 
-				
 
-				success: function(result) {	
+
+				success: function(result) {
 
 					$('.error-text').text('');
 
@@ -422,9 +422,9 @@
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -458,7 +458,7 @@
 
 			beforeSend: function(){$(".body-overlay_questions").show();},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$(".body-overlay_questions").hide();
 
@@ -496,15 +496,15 @@
 
 								'<div class="panel-group margin-0" id="accordion-'+utyp+'-'+key+'">'+
 
-									
+
 
 										'<div class="panel-heading border1-bottom">'+
 
-											
+
 
 											'<h4 class="panel-title question-title"><span>'+
 
-											
+
 
 											key+') </span><a class="question-question q-s-'+val.question_id+'" >'+
 
@@ -512,7 +512,7 @@
 
 											 	'</a>'+
 
-											
+
 
 												'<span href="#" data-toggle="collapse" class="margin cursor sitegreen pull-right accordion-toggle collapsed" data-target="#collapse-'+utyp+'-'+key+'"> <i class="fa fa-edit  marginediticon"> </i> <small> Edit </small> </span>'+
 
@@ -520,9 +520,9 @@
 
 												'';
 
-												
 
-												
+
+
 
 										htm +=' '+
 
@@ -536,7 +536,7 @@
 
 														htm +='<span href="#" class="cursor margin red pull-right" onclick="surveyremove('+val.question_id+');"> <i class="fa fa-times-circle-o"> </i> <small>Survey</small> </span>';
 
-													} 
+													}
 
 										htm +=' </span>'+
 
@@ -552,7 +552,7 @@
 
 													'{!! Form::open(array("url" => "#","class"=>"sky-form enters-questions-to-ask")) !!}'+
 
-													
+
 
 														'<div class="hide question-ask-msg-'+val.question_id+'"></div>'+
 
@@ -572,7 +572,7 @@
 
 														'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+
 
-													
+
 
 													'{!!Form::close()!!}'+
 
@@ -584,13 +584,13 @@
 
 										'</div>'+
 
-									
+
 
 								'</div>'+
 
 							'</div>';
 
-					
+
 
 					apen.append(htm);
 
@@ -606,7 +606,7 @@
 
 			e.preventDefault();
 
-		
+
 
 			//var question_id = e.srcElement[2].value;
 
@@ -616,7 +616,7 @@
 			var question_id = e.target[2].value;
 
 			var fieldname = e.target[1].name;
-			
+
 			//return false;
 			var $form = $(e.target),esmsg = $(".question-ask-msg-"+question_id);
 
@@ -628,7 +628,7 @@
 
 				data: {question_id:question_id,question:question,_token : '{{ csrf_token() }}',add_by : '{{ $user->id }}',add_by_role : '{{ $user->agents_users_role_id }}'},
 
-				success: function(result) {	
+				success: function(result) {
 
 					$('.error-text').text('');
 
@@ -650,7 +650,7 @@
 
 					if(typeof result.msg !='undefined' && result.msg !=null){
 
-						
+
 
 						esmsg.text('').css({'color':'green'});
 
@@ -666,9 +666,9 @@
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -706,7 +706,7 @@
 
 	    	    processData:false,
 
-				success: function(result) {	
+				success: function(result) {
 
 					$('#Question_id').val('');
 
@@ -734,7 +734,7 @@
 
 					if(typeof result.msg !='undefined' && result.msg !=null){
 
-						
+
 
 						esmsg.text('').css({'color':'green'});
 
@@ -776,15 +776,15 @@
 
 									'<div class="panel-group margin-0" id="accordion-'+utyp+'-'+key+'">'+
 
-										
+
 
 											'<div class="panel-heading border1-bottom">'+
 
-												
+
 
 												'<h4 class="panel-title"><span>'+
 
-												
+
 
 												key+') </span><a class=" q-s-'+val.question_id+'" >'+
 
@@ -792,7 +792,7 @@
 
 												 	'</a>'+
 
-												
+
 
 													'<span href="#" class="margin cursor sitegreen pull-right accordion-toggle collapsed" data-href="#collapse-'+utyp+'-'+key+'"> <i class="fa fa-edit  marginediticon"> </i> <small> Edit </small> </span>'+
 
@@ -800,9 +800,9 @@
 
 													'';
 
-													
 
-														
+
+
 
 											htm +=' '+
 
@@ -816,7 +816,7 @@
 
 															htm +='<span href="#" class="cursor margin red pull-right" onclick="surveyremove('+val.question_id+');"> <i class="fa fa-times-circle-o"> </i> <small>Survey</small> </span>';
 
-														} 
+														}
 
 											htm +=' </span>'+
 
@@ -832,7 +832,7 @@
 
 														'{!! Form::open(array("url" => "#","class"=>"sky-form enters-questions-to-ask")) !!}'+
 
-														
+
 
 															'<div class="hide question-ask-msg-'+val.question_id+'"></div>'+
 
@@ -852,7 +852,7 @@
 
 															'<button type="submit" class="margin-top-5 col-md-2 btn-u pull-right">Change</button>'+
 
-														
+
 
 														'{!!Form::close()!!}'+
 
@@ -864,7 +864,7 @@
 
 											'</div>'+
 
-										
+
 
 									'</div>'+
 
@@ -876,9 +876,9 @@
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -900,7 +900,7 @@
 
 		});
 
-	    /* question answear */    
+	    /* question answear */
 	    $('.new-ask-question').click(function(e){
 			e.preventDefault();
 			$('#Question_id').val('');
@@ -910,13 +910,13 @@
 		$('#searchproposalshareuser').submit(function(e){
 			e.preventDefault();
 			shareproposalpopup($('#praposalid').val(),$('#praposalidrole').val());
-		});	
+		});
     });
 
 	/*survey*/
 	function survey(id) {
 		var qdata = important_data[id];
-		$('.sure').show().text('Are you sure that you need to add  question ('+qdata.question+') to the Survey.');
+		$('.sure').show().text('Are you sure that you need to add  question ('+qdata.question+') from the Survey’.');
 		$('#surveyerrormsgshow').removeClass('alert alert-success alert-danger text-center').text('');
 		$('#surveyconfirm')
 	        .modal({ backdrop: 'static', keyboard: false })
@@ -930,7 +930,7 @@
 
 					beforeSend: function(){$(".body-overlay-survey").show();},
 
-					success: function(result) {	
+					success: function(result) {
 
 						// console.log(result);
 
@@ -952,13 +952,13 @@
 
 						// setTimeout($('#imprterrormsgshow').removeClass('alert alert-success alert-danger text-center').text(''),7000);
 
-					},error: function(result) {	
+					},error: function(result) {
 
-						$(".body-overlay-survey").hide(); 
+						$(".body-overlay-survey").hide();
 
 					}
 
-				});        
+				});
 
         });
 
@@ -968,7 +968,7 @@
 
 		var qdata = important_data[id];
 
-		$('.sure').show().text('Are you sure that you need to remove  question ('+qdata.question+') from the Survey.'); 
+		$('.sure').show().text('Are you sure that you need to remove  question ('+qdata.question+') from the Survey.');
 
 		$('#surveyerrormsgshow').removeClass('alert alert-success alert-danger text-center').text('');
 
@@ -990,7 +990,7 @@
 
 					beforeSend: function(){$(".body-overlay-survey").show();},
 
-					success: function(result) {	
+					success: function(result) {
 
 
 						$(".body-overlay-survey").hide();
@@ -1013,7 +1013,7 @@
 
 					},error: function(data) {	$(".body-overlay-survey").hide(); 	}
 
-				});        
+				});
 
         });
 
@@ -1026,9 +1026,9 @@
 		$('#open-proposal-share').modal('show');
 		$('#praposalid').val(id);
 		$('#praposalidrole').val(type);
-		var keyword = $('#proposalkeyword').val();		
-		var address = $('#proposaladdress').val();	
-		var date = $('#proposaldate').val();	
+		var keyword = $('#proposalkeyword').val();
+		var address = $('#proposaladdress').val();
+		var date = $('#proposaldate').val();
 
 		$.ajax({
 			url: "{{url('/')}}/shared/question/with/connected/users/by/"+id+"/"+type+"/{{ $user->id }}/{{ $user->agents_users_role_id }}",
@@ -1036,7 +1036,7 @@
 			data: {date :date,keyword : keyword,address : address,_token : '{{ csrf_token() }}'},
 			headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
 			beforeSend: function(){$(".loadproposalshare").show();},
-			success: function(result) { 
+			success: function(result) {
 				console.log(result);
 				$(".loadproposalshare").hide();
 				if(result.count !== 0){
@@ -1046,7 +1046,7 @@
 							var asrvfun ='<input type="checkbox" checked onclick="shareproposalremove('+value.details_id+','+id+','+value.share_file.result.shared_id+')" name="proposale-checkox-'+value.details_id+'"><i class="o-p-a"></i>';
 						}else{
 							var asrvfun ='<input type="checkbox" onclick="shareproposal('+value.details_id+','+id+')"  name="proposale-checkox-'+value.details_id+'"><i class="n-p-a"></i>';
-						} 
+						}
 						var htmll = '<section><label class="checkbox" style="border-bottom: 1px solid #e6e6e6;">'+
 										'<span class="proposal_share_'+value.details_id+'_'+value.details_id_role_id+'">'+asrvfun+'</span>'+
 										'<strong>'+value.name+'</strong>'+
@@ -1061,7 +1061,7 @@
 					$('#append-proposal-share-user-list').html(no_records);
 				}
 			},
-		  	error: function(data) {	
+		  	error: function(data) {
 
 	    		$(".loadproposalshare").hide();
 	    		if(data.status=='500'){
@@ -1085,21 +1085,21 @@
 
 			data: {notification_type : 1,notification_message : '{{ $userdetails->name }} asked questions related to your post `'+userdata.posttitle+'`' ,shared_type:1 ,shared_item_id:id,shared_item_type : 1,shared_item_type_id : userdata.post_id,receiver_id : userdata.details_id,receiver_role: userdata.details_id_role_id,sender_id: '{{ $user->id }}',sender_role : '{{ $user->agents_users_role_id }}',_token : '{{ csrf_token() }}'},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" checked onclick="shareproposalremove('+userid+','+id+','+result.data+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="o-p-a"></i>');
 				msgshowfewsecond('Question shared successfully');
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});  
+		});
 
 
 
 	}
 
-	function shareproposalremove(userid,id,shared_id) {		
+	function shareproposalremove(userid,id,shared_id) {
 
 		var userdata = shared_proposal_connected_user_list[userid];
 
@@ -1111,20 +1111,20 @@
 
 			data: { id : id, shared_id : shared_id, _token : '{{ csrf_token() }}' },
 
-			success: function(result) {	
+			success: function(result) {
 				msgshowfewsecond('Question removed successfully');
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" onclick="shareproposal('+userid+','+id+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="n-p-a"></i>');
 
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});    
+		});
 
 	}
 
 	$('#open-proposal-share').on('hidden.bs.modal', function () {
 	    ($("#searchproposalshareuser")[0]).reset();
 	});
-</script> 
+</script>
 @stop

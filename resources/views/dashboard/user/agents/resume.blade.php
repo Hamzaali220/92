@@ -14,7 +14,7 @@
 		@include('dashboard.user.agents.include.sidebar')
 		@include('dashboard.user.agents.include.sidebar-profile')
 		<!--End Left Sidebar-->
-		
+
 		<!-- Profile Content -->
 		<div class="col-md-9">
 			@if($segment[2] == "personal")
@@ -31,7 +31,7 @@
 							<div id="Personal" class="profile-edit">
 								<div class="message-Personal"> </div>
 								<div class="body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
-								{!! Form::open(array('class'=>'sky-form','id'=>'edit-personal-bio','enctype'=>'multipart/form-data')) !!}	
+								{!! Form::open(array('class'=>'sky-form','id'=>'edit-personal-bio','enctype'=>'multipart/form-data')) !!}
 								<dl class="dl-horizontal">
 									<dt class="resumelable"><strong>Office address<span class="mandatory">*</span></strong></dt>
 									<dd class="resumefileds office_address" key=""  title="office address">
@@ -65,7 +65,7 @@
 										</label>
 									</dd>
 									<hr>
-								
+
 									<dt class="resumelable"><strong>Zip code </strong></dt>
 									<dd class="resumefileds zip_code" key="{{ $userdetails->zip_code }}" id="zip_code" title="Zip code">
 										<label class="input">
@@ -88,7 +88,7 @@
 									<dd class="resumefileds licence_number" key=""  title="License no.">
 										<label class="input">
 											<input type="text" id="licence_number" onkeypress="return IsAlphaNumeric(event);" ondrop="return false;"
-											onpaste="return false;" name="licence_number" value="{{ $userdetails->licence_number }}"  
+											onpaste="return false;" name="licence_number" value="{{ $userdetails->licence_number }}"
 											data-toggle="tooltip" data-placement="top" placeholder="Licence Number">
 											<b class="error-text" id="licence_number_error"></b>
 										</label>
@@ -174,7 +174,7 @@
 										<b class="error-text" id="MLS_office_id_error"></b>
 									</label>
 								</dd>
-								
+
 								<hr>
 								@if($userdetails->contract_verification == 0)
 								<a href="/downloadContract" class="" id="download_contract"><p class="red">“Please download the contract, sign it and upload it back. Without the contract you cannot meet buyers or sellers ”</p></a>
@@ -193,20 +193,20 @@
 											 Upload </div><input type="text" placeholder="Only pdf file upload with your physically sign" readonly>
 											@endif
 									</label>
-									
+
 									@if($userdetails->statement_document !='')
 									<iframe src="{{ $userdetails->statement_document }}" width="200" height="150"></iframe>
 									@endif
 									<b class="error-text" id="statement_document_error"></b>
 								</dd>
-                                 
+
                                  <input type="hidden" name="statement_document_c" value="{{ $userdetails->statement_document }}">
 								<hr>
 
 								<div class="form-group termc">
 									<label>
 										<input type="checkbox" <?php echo $userdetails->terms_and_conditions==1 ? 'checked' : ''; ?>  name="terms_and_conditions" value="1">
-										I have read <a href="/terms" target="_blanck" class="sitegreen">Terms and Conditions<span class="mandatory">*</span></a>
+										I have Read <a href="/terms" target="_blanck" class="sitegreen">Terms and Conditions<span class="mandatory">*</span></a>
 										<b class="error-text" id="terms_and_conditions_error"></b>
 										<br>
 									</label>
@@ -220,7 +220,7 @@
 							{!!Form::close()!!}
 						</div>
 					</div>
-				</div>						
+				</div>
 			</div>
 			<!-- Default Proposals -->
 		</div>
@@ -239,7 +239,7 @@
 						<div id="settings" class="profile-edit">
 							<div class="message-Professional-profile"> </div>
 							<div class="body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
-							{!! Form::open(array('class'=>'sky-form','id'=>'edit-professional-bio')) !!}	
+							{!! Form::open(array('class'=>'sky-form','id'=>'edit-professional-bio')) !!}
 							<dl class="dl-horizontal">
 								<dt class="resumelable"><strong>Real Estate Education<span class="mandatory">*</span>  </strong></dt>
 								<dd class="resumefileds append-real-estate-education" title="Real Estate Education">
@@ -665,10 +665,10 @@
 							<input type="hidden" name="id" value="{{$user->id}}">
 							<button class="btn-u" type="submit">Update</button>
 
-							{!!Form::close()!!}	
+							{!!Form::close()!!}
 						</div>
 					</div>
-				</div>						
+				</div>
 			</div>
 			<!-- Default Proposals -->
 		</div>
@@ -701,7 +701,7 @@
         	$.ajax({
         		url: "{{url('/')}}/state/get",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			statearray = result;
         			$.each( result, function( key, val ) {
         				var selected= val.state_id == '{{ $userdetails->state_id }}' ? 'selected' : '';
@@ -719,16 +719,16 @@
 					});
 					*/
         		}
-        	});        	
-        	
+        	});
+
         	$('#state').on('change',function(){
-        	
+
         		var state_id = $(this).val();
         		$('#city').children('option:not(:first)').remove();
         		$.ajax({
         		url: "{{url('/')}}/city/get/"+state_id,
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var selected= val.city_id == '{{ $userdetails->city_id }}' ? 'selected' : '';
         				$('#city').append('<option class="text-left" value="'+val.city_id+'" '+selected+' >'+val.city_name+'</option>');
@@ -737,23 +737,23 @@
         	});
 
         	});
-        	
+
         	$.ajax({
         		url: "{{url('/')}}/city/get/",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var selected= val.city_id == '{{ $userdetails->city_id }}' ? 'selected' : '';
         				$('#city').append('<option value="'+val.city_id+'" '+selected+' >'+val.city_name+'</option>');
         			});
-        			
+
         		}
         	});
-        	
+
         	$.ajax({
         		url: "{{url('/')}}/area/get",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var selected= jQuery.inArray(val.area_id, [<?php echo $userdetails->area; ?>]) !== -1 ? 'selected' : '';
         				$('#area').append('<option value="'+val.area_id+'" '+selected+' >'+val.area_name+'</option>');
@@ -772,7 +772,7 @@
         	$.ajax({
         		url: "{{url('/')}}/certifications/get",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var key = val.certifications_id;
         				var value = '<?php echo $userdetails->certifications; ?>';
@@ -794,7 +794,7 @@
         	$.ajax({
         		url: "{{url('/')}}/specialization/get",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var key = val.skill_id;
         				var value = '<?php echo $userdetails->specialization; ?>';
@@ -816,7 +816,7 @@
         	$.ajax({
         		url: "{{url('/')}}/franchise/get",
         		type: 'get',
-        		success: function(result) {	
+        		success: function(result) {
         			$.each( result, function( key, val ) {
         				var selected= jQuery.inArray(val.franchise_id, [<?php echo $userdetails->franchise != 'other' ? $userdetails->franchise : ''; ?>]) !== -1 ? 'selected' : '';
         				$('#franchise').append('<option value="'+val.franchise_id+'" '+selected+' >'+val.franchise_name+'</option>');
@@ -846,7 +846,7 @@
         	});
 
         	/*$('#download_contract').click(function(e) {
-        		e.preventDefault(); 
+        		e.preventDefault();
         		window.location.href = 'http://www.92agents.com/assets/img/agents_pdf/1536050674.pdf';
         	});*/
 
@@ -1018,20 +1018,20 @@
 			var html1 ='<input type="text" name="community_involvement[]"  placeholder="Community Involvement">';
 			$('.community_involvement_pluse').append(html1);
 		});
-		
+
 		/* edit-personal-bio */
 		$('#edit-personal-bio').submit(function(e){
-			e.preventDefault();			
+			e.preventDefault();
 			// var $form = $(e.target),esmsg = $('.message-Professional');
-			$.ajax({				
+			$.ajax({
 				url: "{{url('/')}}/profile/agent/editAgentPersonalProfile",
 				type: 'POST',
 				data:  new FormData(this),//$form.serialize(),
 				beforeSend: function(){$(".body-overlay").show();},
 				processData:false,
 				contentType: false,
-				success: function(result) {	
-					
+				success: function(result) {
+
 					$(".body-overlay").hide();
 					$('.error-text').text('');
 					$('#edit-personal-bio input, #edit-personal-bio select, #edit-personal-bio textarea').removeClass('error-border');
@@ -1070,8 +1070,8 @@
 
 					console.log(result);
 				},
-				error: function(data) 
-				{	
+				error: function(data)
+				{
 					if(data.status=='500'){
 						esmsg.text(data.statusText).css({'color':'red'});
 					}else if(data.status=='422'){
@@ -1081,7 +1081,7 @@
 					$('html, body').animate({
 						scrollTop: $('.message-Professional').offset().top
 					},1000);
-				} 	
+				}
 			});
 		});
 		/* edit edit-prasnol-bio*/
@@ -1089,7 +1089,7 @@
 		/* edit-professional-bio */
 		$('#edit-professional-bio').submit(function(e){
 			e.preventDefault();
-			
+
 			var $form = $(e.target),esmsg = $('.message-Professional-profile');
 			$.ajax({
 				url: "{{url('/')}}/profile/agent/editagentprofessionalprofile",
@@ -1097,8 +1097,8 @@
 				data: $form.serialize(),
 				beforeSend: function(){$(".body-overlay").show();},
 				processData:false,
-				
-				success: function(result) {	
+
+				success: function(result) {
 					$(".body-overlay").hide();
 					$('.error-text').text('');
 					$('#edit-professional-bio input, #edit-professional-bio select, #edit-professional-bio textarea').removeClass('error-border');
@@ -1136,8 +1136,8 @@
 						},1000);
 					}
 				},
-				error: function(data) 
-				{	
+				error: function(data)
+				{
 					if(data.status=='500'){
 						esmsg.text(data.statusText).css({'color':'red'});
 					}else if(data.status=='422'){
@@ -1147,7 +1147,7 @@
 					$('html, body').animate({
 						scrollTop: $('.message-Professional-profile').offset().top
 					},1000);
-				} 	
+				}
 			});
 		});
 		/* edit edit-prasnol-bio*/
@@ -1167,7 +1167,7 @@ $('textarea').hover(function(e){
 $('select').hover(function(e){
     $(this).attr('title', '');
 });
-</script> 
+</script>
 @stop
 
 

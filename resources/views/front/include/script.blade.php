@@ -64,19 +64,19 @@
 		if(roll=='modalseller'){
 
 		   	users_role_id.val('3');
-		   	usertitle.text('Login to Seller');
+		   	usertitle.text('Login as Seller');
 		   	$('.loginsignupbutton').html('<a class="nesusersignup cursor" data-target="modalseller">Sign Up</a>');
 
 		}else if(roll=='modalbuyer'){
 
 		   	users_role_id.val('2');
-		   	usertitle.text('Login to  Buyer');
+		   	usertitle.text('Login as  Buyer');
 		   	$('.loginsignupbutton').html('<a class="nesusersignup cursor" data-target="modalbuyer">Sign Up</a>');
 
 		}else if(roll=='modalagent'){
 
 	  	 	users_role_id.val('4');
-	  	 	usertitle.text('Login to  Agent');
+	  	 	usertitle.text('Login as  Agent');
 		   	$('.loginsignupbutton').html('<a class="nesusersignup cursor" data-target="modalagent">Sign Up</a>');
 
 		}
