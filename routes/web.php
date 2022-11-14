@@ -58,7 +58,7 @@ Route::group(['middleware' => ['lang', 'guest']], function () {
 	Route::get('/login', ['as' => 'login', 'uses' => 'Front\HomeController@login']);
 	Route::post('/login', 'Auth\LoginController@login');
 	Route::post('/login_api', 'Auth\LoginController@login_api');
-	
+
 	/* Mobile */
 	Route::post('/mobile/login_api', 'Auth\LoginController@login_api');
 	Route::post('/mobile/signup1', 'Front\HomeController@signup');
@@ -294,7 +294,7 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 	Route::get('/notes/delete/by/{id}', 'Administrator\NotesController@delete');
 
 	/*applied post and agents */
-	Route::get('/{name}/applied/post', 'Administrator\ProfileController@AppliedPostForAgents');
+	Route::get('/{name}/applied/post/{status}', 'Administrator\ProfileController@AppliedPostForAgents')->name("appliedposts");
 Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 	Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}/{selected}/{user_role_id?}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 

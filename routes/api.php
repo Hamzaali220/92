@@ -48,8 +48,13 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/profilePicture', 'Api\ProfileController@editprofilepic');
     Route::post('/securtyquestion', 'Api\ProfileController@securtyquestion');
+    Route::post('/getuserdetails', 'Api\ProfileController@getUserDetails');
+    Route::get('/getsecurtyquestion', 'Api\ProfileController@getsecurityquestions');
     /*edit agent profile */
     Route::Post('/personalbio', 'Api\ProfileController@resume');
+    Route::Post('/editpersonalbio', 'Api\ProfileController@editFieldsbio');
+    Route::Post('/getpersonalbio', 'Api\ProfileController@showbio');
+    Route::Post('/profilesettings', 'Api\ProfileController@profilesettings');
     Route::post('/editagentprofile', 'Api\ProfileController@editagentprofile');
 
     Route::post('/agentPosts', 'Api\ProfileController@AppliedPostListGetForAgents');
@@ -114,14 +119,14 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     // Chat messages
     /*Messaging/ Chat*/
-    Route::get('/messages', 'Api\MessagingChatController@index');
     // Route::get('/messages/{post_id}', 'Api\MessagingChatController@index');
+    Route::get('/messages', 'Api\MessagingChatController@index');
     Route::get('/messages/{post_id}/{receiver_id}/{receiver_role_id}', 'Api\MessagingChatController@index');
     Route::get('/NewConversation/{post_id}/{receiver_id}/{receiver_role_id}', 'Api\MessagingChatController@createconversation');
 
-    Route::post('/messageslist/get/conversation/{limit}', 'Api\MessagingChatController@ConversationList');
-    Route::post('/messageslist/get/conversation/messages/{limit}', 'Api\MessagingChatController@ConversationMessagesList');
-    Route::get('/messageslist/get/sended/{limit}', 'Api\MessagingChatController@SendedMessage');
+    Route::post('/messageslist/get/conversation', 'Api\MessagingChatController@ConversationList');
+    Route::post('/messageslist/get/conversation/messages', 'Api\MessagingChatController@ConversationMessagesList');
+    Route::get('/messageslist/get/sended', 'Api\MessagingChatController@SendedMessage');
     Route::post('/messageslist/get/unread', 'Api\MessagingChatController@UnreadMessage');
     Route::post('/insert/new/messages', 'Api\MessagingChatController@InsertNewMessage');
     Route::post('/read/update/messages', 'Api\MessagingChatController@readupdate');
@@ -129,6 +134,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     /* Get the notifications list*/
     Route::get('/notifications/{limit}', 'Api\MessagingChatController@getnotifications');
     Route::get('/notifications/read/{id}', 'Api\MessagingChatController@update');
+    // Route::get('/contactus', 'Front\HomeController@contact');
+
+    
+Route::post('contactSend','Api\ProfileController@contactSend');
+Route::post('/paymentagents', 'Api\ProfileController@paymentagents');
+Route::post('/saveCard', 'Api\ProfileController@saveCard');
 
     /* add closing date api */
     Route::post('/addclosingdate', 'Api\AgentsSearchController@addclosingdate');

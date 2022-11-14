@@ -878,14 +878,18 @@ class ProfileController extends Controller
 
 
     /* For applied post for agents */
-    public function AppliedPostForAgents()
+    public function AppliedPostForAgents($agentname,$status)
     {
 
         if (Auth::user()) {
             $view = array();
             $view['user'] = $user = Auth::user();
             $view['userdetails'] = $userdetails = Userdetails::find($user->id);
-            $invoice_details = DB::table('agents_selldetails as as')
+            if($status==2){
+                $state=new State;
+                $view['city']        = $state->getCityByAny(array('is_deleted' => '0'));
+                $view['state']       = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
+                $invoice_details = DB::table('agents_selldetails as as')
                 ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
                 ->select(
                     'as.sellers_name', 
@@ -900,9 +904,58 @@ class ProfileController extends Controller
                     "as.agent_comission"
                 )
                 ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
+                ->get();  
+                $view['invoice_details'] = $invoice_details;  
+            }
+            else if($status==1){
+                $state=new State;
+                $view['city']        = $state->getCityByAny(array('is_deleted' => '0'));
+                $view['state']       = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
+                $invoice_details = DB::table('agents_selldetails as as')
+                ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
+                ->select(
+                    'as.sellers_name', 
+                    'as.id', 
+                    'as.address', 
+                    'as.payment_status', 
+                    'as.receipt_url', 
+                    'as.sale_date', 
+                    'as.sale_price',
+                    'ap.posttitle',
+                    'as.status',
+                    "as.agent_comission"
+                )
+                ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1,'as.payment_status' => $status])
+                ->where('as.address','!=', '')
+                ->where('as.agent_comission','!=', '')
+                ->where('as.sale_date','!=', '')
+                ->where('as.sale_price','!=', '')
+                ->get();  
+                $view['invoice_details'] = $invoice_details;  
+            }
+            else{
+                $state=new State;
+                $view['city']        = $state->getCityByAny(array('is_deleted' => '0'));
+                $view['state']       = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
+            $invoice_details = DB::table('agents_selldetails as as')
+                ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
+                ->select(
+                    'as.sellers_name', 
+                    'as.id', 
+                    'as.address', 
+                    'as.payment_status', 
+                    'as.receipt_url', 
+                    'as.sale_date', 
+                    'as.sale_price',
+                    'ap.posttitle',
+                    'as.status',
+                    "as.agent_comission"
+                )
+                ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1,'as.payment_status' => $status])
                 ->get();
-
-            $view['invoice_details'] = $invoice_details;
+                $view['invoice_details'] = $invoice_details;
+                }
+            $view['post_status'] = $status;
             return view('dashboard.user.agents.appliedpost', $view);
         } else {
             return redirect('/login?usertype=' . env('user_role_' . Auth::user()->agents_users_role_id));

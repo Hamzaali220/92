@@ -245,7 +245,7 @@ class DashboardController extends Controller
             $obj[] = (object) array_merge((array) $value, (array) $post_view_count, (array)$comp);
         }
 
-        return response()->json(['status' => '100', 'posts' => $obj]);
+        return response()->json(['status' => '100', 'posts' => $obj,'data'=>'nono']);
     }
 
 

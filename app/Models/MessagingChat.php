@@ -94,7 +94,7 @@ class MessagingChat extends Model
 			->where(function($query) use($where,$orwhere){
 			    $query->whereRaw(DB::raw(
 
-			           'CASE WHEN m.sender_id = '.$where['m.sender_id'].' AND m.sender_role_id = '.$where['m.sender_role_id'].'
+			           'CASE WHEN m.sender_id = '.$where['m.sender_id']." AND m.sender_role_id = ".$where['m.sender_role_id'].'
 			            THEN m.receiver_id = u.details_id
 			            WHEN m.receiver_id = '.$where['m.sender_id'].'  AND m.receiver_role_id = '.$where['m.sender_role_id'].'
 			            THEN m.sender_id = u.details_id END'
@@ -109,14 +109,14 @@ class MessagingChat extends Model
 		 	->orderBy('m.updated_at','DESC');
 
 		  	$count = $query1->count();
-			$result = $query1->skip($limit*10)->take(10)->get();
+			$result = $query1->take(10)->get();
 			$coun = floor($count/10);
-	        $prview = $limit == 0 ? 0 : $limit-1;
+	        // if($limit == 0){$prview=0;}else{ $prview=$limit-1;};
 	        $next   = $coun==$limit ? 0 : ($count <=10 ? 0 : $limit+1);
-	        $rlimit = $limit*10==0 ? 1 : $limit*10;
+	        // $rlimit = $limit*10==0 ? 1 : $limit*10;
 	        $llimit = $next*10 == 0 ? $count : $next*10;
 
-		 	$data = array('result' => $result,'count' => $count,'llimit' => $llimit, 'rlimit' => $rlimit,'prview' => $prview, 'next' => $next);
+		 	$data = array('result' => $result,'count' => $count,'llimit' => $llimit, 'rlimit' => "rlimit",'prview' => "prview", 'next' => $next);
 
 			return $data;
 	}

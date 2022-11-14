@@ -19,7 +19,7 @@ use Carbon\Carbon;
 use App\Helper\StripHelper;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
-
+use Twilio\Rest\Client;
 class SignUpController extends Controller
 {
     /**
@@ -59,15 +59,17 @@ class SignUpController extends Controller
      */
     /*signup step 1*/
     public function signup(Request $request)
-    {
+    { 
         // dd('ddd');
         $postStep = $request->input('step');
-        $roleId = $request->input('agents_users_role_id');
+        // $roleId = $request->input('agents_users_role_id');
         $rules = array();
-        $rules['agents_users_role_id']  =   ['required', Rule::in(['1', '2', '3', '4'])];
+        // $rules['agents_users_role_id']  =   ['required', Rule::in(['1', '2', '3', '4'])];
         $rules['fname']                 =   'required';
-        $rules['lname']                 =   'required';
+        // $rules['lname']                 =   'required';
+        $rules['phone']             = 'required';
         $rules['email']                 =   'required|email';
+        // $rules['phone_number']                 =   'required';
         $rules['terms_and_conditions']  =   'required';
         $rules['password']              =   'required|min:6';
         $rules['confirm_password']      =   'required|same:password';
@@ -75,7 +77,7 @@ class SignUpController extends Controller
         $error_message = array(
             'terms_and_conditions.required' => 'Acceptance of Terms and Conditions is required',
             'fname.required'                => 'The first name is required',
-            'lname.required'                => 'The last name is required',
+            // 'lname.required'                => 'The last name is required',
         );
 
         $validator = Validator::make($request->all(), $rules, $error_message);
@@ -89,7 +91,7 @@ class SignUpController extends Controller
             if (empty($userExits)) {
                 $activation_link = uniqid();
                 $user                       = new User;
-                $user->agents_users_role_id = $roleId;
+                // $user->agents_users_role_id = $roleId;
                 $user->step                 = $postStep;
                 $user->email                = $request->input('email');
                 $user->password             = Hash::make($request->input('password'));
@@ -98,26 +100,34 @@ class SignUpController extends Controller
 
                 $details                =    array();
                 $details['details_id']  =   $user->id;
-                $details['name']        =   $request->input('fname') . ' ' . $request->input('lname');
+                // $details['name']        =   $request->input('fname') . ' ' . $request->input('lname');
+                $details['name']        =   $request->input('fname');
                 $details['fname']       =   $request->input('fname');
-                $details['lname']       =   $request->input('lname');
+                $details['lname']       =   $request->input('fname');
+                $details['phone']       =   $request->input('phone');
 
                 DB::table('agents_users_details')->insertGetId($details);
 
-                $emaildata = array();
-                $emaildata['email']     =   $request->input('email');
-                $emaildata['rolename']  =   env("user_role_" . $roleId);
-                $emaildata['url']       =   url('/') . '/login?usertype=' . $emaildata['rolename'] . '&activation_link=' . $activation_link;
-                $emaildata['name']      =   ucwords($details['name']);
-
+                // $emaildata = array();
+                // $emaildata['email']     =   $request->input('email');
+                // $emaildata['rolename']  =   env("user_role_" . $roleId);
+                // $emaildata['url']       =   url('/') . '/login?usertype=' . $emaildata['rolename'] . '&activation_link=' . $activation_link;
+                // $emaildata['name']      =   ucwords($details['name']);
+                $token = getenv("TWILIO_AUTH_TOKEN");
+                $twilio_sid = getenv("TWILIO_SID");
+                $twilio_verify_sid = getenv("TWILIO_VERIFY_SID");
+                $twilio = new Client($twilio_sid, $token);
+                $twilio->verify->v2->services($twilio_verify_sid)
+                    ->verifications
+                    ->create($request->input('phone'), "sms");
                 $userDetails = $user->getDetailsByEmailOrId(array('id' => $user->id));
-                $this->NewUserMailSend($emaildata);
-                return response()->json(['status' => '100', 'userDetails' => $userDetails, 'step' => '1', 'emaildata' => $emaildata]);
+                // $this->NewUserMailSend($emaildata);
+                return response()->json(['status' => 'verify', 'userDetails' => $userDetails, 'step' => '1']);
             } else {
-                if ($userExits->agents_users_role_id == $roleId && $userExits->step == 3) {
+                if ($userExits->step == 3) {
                     return response()->json(array('error' => 'Email already exist in our records please use login button.', 'status' => '101'));
                 } else {
-                    if ($userExits->agents_users_role_id != $roleId && $userExits->agents_users_role_id == 4) {
+                    if ($userExits->agents_users_role_id == 4) {
                         return response()->json(array('error' => 'Email already exist in our records as an agent.', 'status' => '101'));
                     }
                     if (($userExits->agents_users_role_id == 2 || $userExits->agents_users_role_id == 3) && $userExits->step == 3) {
@@ -131,8 +141,49 @@ class SignUpController extends Controller
         endif;
     }
 
+    public function signup2(Request $request){
+        $postStep = $request->input('step');
+        $roleId = $request->input('agents_users_role_id');
+        $rules                      = array();
+        $rules['id']                = 'required';
+        $rules['agents_users_role_id']  =   ['required', Rule::in(['1', '2', '3', '4'])];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) :
+            return response()->json(['status' => '101', 'error' => $validator->errors()]);
+        else :
+
+            // $input_arr['address_line_2'] = $request->input('address_line_2');
+
+            if (!empty($request->input('id')) && User::find($request->input('id')) && Userdetails::find($request->input('id'))) {
+
+                $userdetails = Userdetails::find($request->input('id'));
+                $user = User::find($request->input('id'));
+                $user->step = $postStep;
+                $user->agents_users_role_id = $roleId;
+                $user->save();
+
+                $userDetailssend = $user->getDetailsByEmailOrId(array('id' => $userdetails->details_id));
+
+                if ($roleId == 3 || $roleId == 2) {
+
+                    $post =  new Post;
+                    $postdetails = $post->getDetailsByUserroleandId($request->input('id'), $roleId);
+
+                    return response()->json(['status' => '100', 'userDetails' => $userDetailssend, 'postdetails' => $postdetails, 'step' => '2']);
+                } else {
+
+                    return response()->json(['status' => '100', 'userDetails' => $userDetailssend, 'step' => '2']);
+                }
+            } else {
+
+                return response()->json(['status' => '101', 'error' => 'User not found. Please refresh the page and try again.']);
+            }
+        endif;
+
+    }
     /*signup step 2*/
-    public function signup2(Request $request)
+    public function signup22(Request $request)
     {
         $postStep = $request->input('step');
         $roleId = $request->input('agents_users_role_id');
@@ -193,6 +244,8 @@ class SignUpController extends Controller
         $postStep   = $request->input('step');
         $roleId     = $request->input('agents_users_role_id');
         $user_id    = $request->input('id');
+        $verifications['verification_code']    = $request->input('verification_code');
+
 
         if (!empty($user_id) && User::find($user_id) && Userdetails::find($user_id)) {
 
@@ -200,7 +253,7 @@ class SignUpController extends Controller
             if ($roleId == 3 || $roleId == 2) {
 
                 $rules                      = array();
-                $rules['posttitle'] =   'required';
+                $rules['verification_code'] =   'required|numeric';
 
                 $validator = Validator::make($request->all(), $rules);
 
@@ -209,34 +262,23 @@ class SignUpController extends Controller
                     return response()->json(['status' => '101', 'error' => $validator->errors()]);
 
                 else :
-                    $post =  new Post;
-                    $postdetails = $post->getDetailsByUserroleandId($user_id, $roleId);
-
-                    if (empty($postdetails)) {
-
-                        $postdetailsnew =   array();
-                        $postdetailsnew['agents_user_id']       =   $user_id;
-                        $postdetailsnew['agents_users_role_id'] =   $roleId;
-                        $postdetailsnew['posttitle']            =   $request->input('posttitle');
-                        $postdetailsnew['updated_at']           =   Carbon::now()->toDateTimeString();
-                        $postdetailsnew['created_at']           =   Carbon::now()->toDateTimeString();
-                        DB::table('agents_posts')->insertGetId($postdetailsnew);
-                    } else {
-
-                        $postdetails = Post::find($postdetails->post_id);
-                        $postdetails->agents_user_id        =   $user_id;
-                        $postdetails->agents_users_role_id  =   $roleId;
-                        $postdetails->posttitle             =   $request->input('posttitle');
-                        $postdetails->updated_at            =   Carbon::now()->toDateTimeString();
-                        $postdetails->created_at            =   Carbon::now()->toDateTimeString();
-                        $postdetails->save();
-                    }
-                    $user           = User::find($user_id);
-                    $user->step     = $postStep;
-                    $user->save();
-                    $userDetailssend    =   $user->getDetailsByEmailOrId(array('id' => $user_id));
-
-                    return response()->json(['status' => '100', 'userDetails' => $userDetailssend, 'step' => '3']);
+                    $userForphone=Userdetails::find($user_id);
+                    // dd($userForphone);
+                    $userphn['pphn']=$userForphone->phone;
+                    $token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_sid = getenv("TWILIO_SID");
+        $twilio_verify_sid = getenv("TWILIO_VERIFY_SID");
+                    $twilio = new Client($twilio_sid, $token);
+        $verification = $twilio->verify->v2->services($twilio_verify_sid)
+            ->verificationChecks
+            // ['code' => $data['verification_code']
+            ->create(['code' => $verifications['verification_code'], 'to' => $userphn['pphn']]);
+        if ($verification->valid) {
+            $user = tap(User::where('id', $user_id))->update(['status' => '1']);
+            return response()->json(['status' => '100', 'userDetails' => $userForphone, 'step' => '3']);
+        }
+        return response()->json(['status' => '101', 'error' => 'otp error.']);
+                   
                 endif;
             }
 

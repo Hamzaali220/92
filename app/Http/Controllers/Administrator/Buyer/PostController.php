@@ -490,7 +490,7 @@ class PostController extends Controller
                 'price_range'        => 'required',
                 'home_type'          => 'required',
                 'need_Cash_back'     => 'required',
-                'zip.*'                => 'required|digits:5|numeric',
+                'zip.*' => 'required|digits:5|numeric',
             );
 
 

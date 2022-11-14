@@ -439,13 +439,13 @@ $area = $s->getAreaByAny(array('is_deleted' => '0'));
                             name="password" placeholder="Password" />
                         <p class="error-text hide user-password-error" id="user-password-error"></p>
                     </div>
-                    {{-- <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
                          {!! NoCaptcha::renderJs() !!}
                          {!! NoCaptcha::display() !!}
                         <!-- mishrar -->
                         <p class="error-text hide user-g-recaptcha-response-error" id="user-g-recaptcha-response-error">
                         </p>
-                    </div> --}}
+                    </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <!-- Remember Field -->
                         <div class="checkbox">

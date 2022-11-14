@@ -75,71 +75,71 @@ class AgentsSearchController extends Controller
 
 
 
-            if ($where['agents_users_role_id'] && $where['agents_users_role_id'] != '') {
+            // if ($where['agents_users_role_id'] && $where['agents_users_role_id'] != '') {
 
-                $query->where(array('agents_users.agents_users_role_id' => $where['agents_users_role_id']));
-            }
+            //     $query->where(array('agents_users.agents_users_role_id' => $where['agents_users_role_id']));
+            // }
 
-            if ($where['date'] && $where['date'] != '') {
+            // if ($where['date'] && $where['date'] != '') {
 
-                $dd = explode('-', $where['date']);
+            //     $dd = explode('-', $where['date']);
 
-                //$dd1 = $dd[0];
+            //     //$dd1 = $dd[0];
 
-                //$dd2 = $dd[1];
+            //     //$dd2 = $dd[1];
 
-                $dd1 = date('Y-m-d', strtotime($dd[0]));
+            //     $dd1 = date('Y-m-d', strtotime($dd[0]));
 
-                $dd2 = date('Y-m-d', strtotime($dd[1]));
+            //     $dd2 = date('Y-m-d', strtotime($dd[1]));
 
-                $query->where(function ($query1) use ($dd1, $dd2) {
+            //     $query->where(function ($query1) use ($dd1, $dd2) {
 
-                    $query1->whereBetween('agents_users.created_at', [$dd1, $dd2]);
-                });
-            }
+            //         $query1->whereBetween('agents_users.created_at', [$dd1, $dd2]);
+            //     });
+            // }
 
-            if ($where['city'] && $where['city'] != '') {
+            // if ($where['city'] && $where['city'] != '') {
 
-                $query->where(function ($q) use ($where) {
+            //     $query->where(function ($q) use ($where) {
 
-                    $q->where('agents_users_details.city_id', 'LIKE', "%" . $where['city'] . "%");
-                });
-            }
+            //         $q->where('agents_users_details.city_id', 'LIKE', "%" . $where['city'] . "%");
+            //     });
+            // }
 
-            if ($where['state'] && $where['state'] != '') {
+            // if ($where['state'] && $where['state'] != '') {
 
-                $query->where('agents_users_details.state_id', $where['state']);
-            }
+            //     $query->where('agents_users_details.state_id', $where['state']);
+            // }
 
-            if ($where['zipcodes'] && $where['zipcodes'] != '') {
+            // if ($where['zipcodes'] && $where['zipcodes'] != '') {
 
-                $query->where('agents_users_details.zip_code', $where['zipcodes']);
-            }
+            //     $query->where('agents_users_details.zip_code', $where['zipcodes']);
+            // }
 
-            if ($where['pricerange'] && $where['pricerange'] != '') {
+            // if ($where['pricerange'] && $where['pricerange'] != '') {
 
-                $query->where(function ($q) use ($where) {
+            //     $query->where(function ($q) use ($where) {
 
-                    $q->where('agents_users_details.total_sales', '>=', $where['pricerange'][0]);
+            //         $q->where('agents_users_details.total_sales', '>=', $where['pricerange'][0]);
 
-                    $q->where('agents_users_details.total_sales', '<=', $where['pricerange'][1]);
-                });
+            //         $q->where('agents_users_details.total_sales', '<=', $where['pricerange'][1]);
+            //     });
 
 
 
-                //$query->whereBetween('agents_users_details.total_sales1',[$where['pricerange'][0], $where['pricerange'][1]] );
+            //     //$query->whereBetween('agents_users_details.total_sales1',[$where['pricerange'][0], $where['pricerange'][1]] );
 
-            }
+            // }
 
-            if ($where['address'] && $where['address'] != '') {
+            // if ($where['address'] && $where['address'] != '') {
 
-                $query->where(function ($query1) use ($where) {
+            //     $query->where(function ($query1) use ($where) {
 
-                    $query1->where('agents_users_details.address', 'LIKE', "%" . $where['address'] . "%");
+            //         $query1->where('agents_users_details.address', 'LIKE', "%" . $where['address'] . "%");
 
-                    $query1->orWhere('agents_users_details.address2', 'LIKE', "%" . $where['address'] . "%");
-                });
-            }
+            //         $query1->orWhere('agents_users_details.address2', 'LIKE', "%" . $where['address'] . "%");
+            //     });
+            // }
 
             if ($where['keyword'] && $where['keyword'] != '') {
 

@@ -196,10 +196,22 @@
 	background: #fff;
 }
 
-.profile .table th {
-	min-width: 100px;
+.profile .table th:nth-child(4) {
+	min-width: 130px;
 }
 
+.profile .table th:nth-child(5) ,.profile .table th:nth-child(6) {
+	min-width: 40px !important;
+	/* max-width: 50px !important; */
+}
+.profile .table>tbody>tr>td input {
+	padding: 5px !important;
+	/* min-width: 128px !important; */
+}
+.profile .table>tbody>tr>td .address {
+	/* padding: 5px !important; */
+	width: 300px !important;
+}
 .profile .table td {
 	vertical-align: middle;
 }

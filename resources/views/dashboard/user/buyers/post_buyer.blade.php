@@ -315,6 +315,7 @@
 	 		$('#city').val('');
 	 		$('#area').val('');
 	 		$('.zip').val('');
+	 		// $('#zip1').val('');
 		 	$("#when_u_want_to_buy").val( "" );
 		 	$("#price_range").val( "" );
 		 	$("#home_type").val( "" );

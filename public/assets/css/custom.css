@@ -2368,6 +2368,9 @@ sub.Online.mini,sub.Offline.mini {
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
     vertical-align: inherit !important;
+    padding: 3px !important;
+    /* width: 12px !important; */
+
 }
 .select-for-post-button{
     padding: 2px 7px;

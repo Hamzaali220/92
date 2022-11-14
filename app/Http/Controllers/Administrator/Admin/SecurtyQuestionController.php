@@ -75,7 +75,6 @@ class SecurtyQuestionController extends Controller
 
 	public function save(Request $request)
     {
-
         $rules = array(
             'question'  => 'required|string|unique:agents_securty_question',
 		);

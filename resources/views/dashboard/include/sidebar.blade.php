@@ -163,7 +163,7 @@
 										<li class="{{ @$activemenu=='dashboard' ? 'active' : '' }}"><a href="{{url('/dashboard')}}">Dashboard</a></li>
 
 										@if($user->agents_users_role_id==4)
-										<li class="{{ @$activemenu=='appliedpost' ? 'active' : '' }}"><a href="{{url('/'.str_replace(' ','',$userdetails->name).'/applied/post')}}">My Jobs</a></li>
+										<li class="{{ @$activemenu=='appliedpost' ? 'active' : '' }}"><a href="{{url('/'.str_replace(' ','',$userdetails->name).'/applied/post/2')}}">My Jobs</a></li>
 
 										<li class="{{ @$activemenu=='connectedpost' ? 'active' : '' }}"><a href="{{ url('/agent/connected/post') }}">Connected Jobs</a></li>
 

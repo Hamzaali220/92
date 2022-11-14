@@ -37,21 +37,7 @@ class NotesController extends Controller
         $notifiy['receiver_role'] = $update['receiver_role'] =   $request->input('receiver_role');
 
         $notes = new Notes;
-        $acheck = $notes->getnotesSingalByAny($update);
-        if (!empty($acheck)) {
-            $bookbarkupdate                         =  Notes::find($acheck->notes_id);
-            $bookbarkupdate->notes_type            =  $request->input('notes_type');
-            $bookbarkupdate->notes                 =  $request->input('notes');
-            $bookbarkupdate->notes_item_id         =  $request->input('notes_item_id');
-            $bookbarkupdate->notes_item_parent_id  =  $request->input('notes_item_parent_id');
-            $bookbarkupdate->sender_id              =  $request->input('sender_id');
-            $bookbarkupdate->sender_role            =  $request->input('sender_role');
-            $bookbarkupdate->receiver_id            =  $request->input('receiver_id');
-            $bookbarkupdate->receiver_role          =  $request->input('receiver_role');
-            $bookbarkupdate->updated_at             =  Carbon::now()->toDateTimeString();
-            $bookbarkupdate->save();
-            $result                                 =   $bookbarkupdate;
-        } else {
+       
 
             $notes->notes_type                    =   $request->input('notes_type');
             $notes->notes                         =   $request->input('notes');
@@ -64,7 +50,7 @@ class NotesController extends Controller
             $notes->updated_at                     =   Carbon::now()->toDateTimeString();
             $notes->save();
             $result                            =   $notes;
-        }
+    
 
         return response()->json(['status' => '100', 'response' => $result]);
     }

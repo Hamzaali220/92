@@ -82,10 +82,12 @@ class MessagingChatController extends Controller
                 $view['receiver'] = $user->getDetailsByEmailOrId(array('id' => $receiver_id));
                 $view['post_id']      = $post_id != null ? $post_id : '';
             }
-            return view('dashboard.user.messages.messages', $view);
+            // return view('dashboard.user.messages.messages', $view);
+            return response()->json(['status' => '200', 'response' => $view]);
         } else {
 
-            return redirect('/login?usertype=' . env('user_role_' . Auth::user()->agents_users_role_id));
+            // return redirect('/login?usertype=' . env('user_role_' . Auth::user()->agents_users_role_id));
+            return response()->json(['status' => '201', 'response' => 'User is not authenticated']);
         }
     }
 
@@ -175,9 +177,10 @@ class MessagingChatController extends Controller
      * @param  \App\MessagingChat  $messagingChat
      * @return \Illuminate\Http\Response
      */
-    public function ConversationList(Request $request, $limit)
+    public function ConversationList(Request $request)
     {
         $messagingchat = new MessagingChat;
+        $limit=$request->input('limit');
         $where = array(
             'm.sender_id'           => $request->input('sender_id'),
             'm.sender_role_id'      => $request->input('sender_role'),
@@ -196,9 +199,10 @@ class MessagingChatController extends Controller
      * @param  \App\MessagingChat  $messagingChat
      * @return \Illuminate\Http\Response
      */
-    public function ConversationMessagesList(Request $request, $limit)
+    public function ConversationMessagesList(Request $request)
     {
         $ratingdata = array();
+        $limit=$request->input('limit');
         $bookmarkdata = array();
         $bookmark = new Bookmark;
         $rating = new Rating;
@@ -245,8 +249,9 @@ class MessagingChatController extends Controller
      * @param  \App\MessagingChat  $messagingChat
      * @return \Illuminate\Http\Response
      */
-    public function SendedMessage(Request $request, $limit)
+    public function SendedMessage(Request $request)
     {
+        $limit=$request->input('limit');
         $messagingchat = new MessagingChat;
         $where = array(
             'm.sender_id'           => Auth::user()->id,
@@ -304,6 +309,9 @@ class MessagingChatController extends Controller
             $cmm->snippet               =  $request->input('message_text');
             $cmm->updated_at            =  Carbon::now()->toDateTimeString();
             $cmm->created_at            =  Carbon::now()->toDateTimeString();
+            $cmm->post_id= $request->input('post_id');
+            $cmm->sender_id= $request->input('sender_id');
+            // $cmm->sender_role= $request->input('sender_rol');
             $cmm->save();
 
             $messagingchat = new MessagingChat;
@@ -368,7 +376,7 @@ class MessagingChatController extends Controller
             $messagingchat = new MessagingChat;
             $messagingchat->ConversationInserUpdate($cmm, array('conversation_id' => $request->input('cid'), 'tags_user_id' => Auth::user()->id));
             $messagingchat->ConversationMessageInserUpdate(array('tags_read' => 2), array('conversation_id' => $request->input('cid'), 'receiver_id' => Auth::user()->id, 'receiver_role' => Auth::user()->agents_users_role_id));
-        }
+            return response()->json(array('status' => 'success', 'data' => $messagingchat));        }
     }
 
     /* Added as API for notification creation */
