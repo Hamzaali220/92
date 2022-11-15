@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-sm-3 md-margin-bottom-10 statediv d-flex">
 
-						<div class="input-group width100">										
+						<div class="input-group width100">
 
 							{{-- <select id="pending" name="pending" class="state form-control multipalselecte text-13" placeholder="Select Post Type">
 
@@ -43,7 +43,7 @@
 							</select> --}}
 
 						</div>
-						
+
 
 
 
@@ -53,7 +53,7 @@
 						<a href="{{url('/'.str_replace(' ','',$userdetails->name).'/applied/post/1')}}" class="btn-u padding-8">Paid</a>
 						<a href="{{url('/'.str_replace(' ','',$userdetails->name).'/applied/post/0')}}" class="btn-u padding-8">Unpaid</a>
 					</div>
-				
+
 						<!--=== Profile ===-->
 
 	<div class="container profile">
@@ -74,14 +74,18 @@
 
 						<div class="panel-heading  air-card">
 
-							{!! Form::open(array('url' => '#','id'=>'searchpost','class'=>'sky-form')) !!}
+							{!! Form::open(array('route' => 'appliedpostsbydate','id'=>'searchpost','class'=>'sky-form')) !!}
 
 							<div class="row">
 
 								<div class="col-sm-6  datediv">
 
 									<div class="input-group">
-
+                                        @php
+                                            $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                            $actual_link = basename(request()->path());
+                                        @endphp
+                                        <input type="hidden" name="status" value="{{$actual_link}}">
 										<span class="input-group-addon sitegreen"><i class="fa fa-calendar"></i></span>
 
 										<input type="text" id="date" title="Select Date" value="" name="date" value="<?php echo @$search_post['date'] ?>" class="text-13 col-lg-10 form-control reservation date" placeholder="Date">
@@ -93,19 +97,19 @@
 									<div class="col-sm-3 usertypediv">
 
 										<div class="input-group width100">
-	
+
 											<select id="usertype" name="usertype" class="usertype form-control multipalselecte text-13">
-	
+
 												<option value="2" {{ @$search_post['usertype'] && $search_post['usertype'] == '2' ? 'selected' : '' }}> Buyer </option>
-	
+
 												<option value="3" {{ @$search_post['usertype'] && $search_post['usertype'] == '3' ? 'selected' : '' }}> Seller </option>
-	
+
 											</select>
-	
+
 											<p class="usertypeerror red hide">Please select user type.</p>
-	
+
 										</div>
-	
+
 									</div>
 								</div>
 
@@ -113,12 +117,12 @@
 
 
 							<div class="row">
-	
+
 								<div class="col-sm-12 submitdiv">
 
 									<button type="submit" class="btn-u pull-right"  name="searchpost"> Search Post</button>
 
-								</div>	
+								</div>
 
 							</div>
 
@@ -128,7 +132,7 @@
 
 						<!--/start row-->
 
-						{{-- <div class="" >							
+						{{-- <div class="" >
 
 							<div id="append-post-ajax"></div>
 
@@ -144,7 +148,7 @@
 
 				</div>
 
-				
+
 
 			</div>
 
@@ -155,7 +159,7 @@
 	</div>
 
 	<!--=== End Profile ===-->
-				
+
 				</div>
 				<div class="box-shadow-profile ">
 					<div class="panel-profile" style="padding: 10px;">
@@ -175,7 +179,7 @@
 						                <th>Status</th>
 						                <th>Actions</th>
 						                <th>
-											<?php 
+											<?php
 											if($post_status!=1){
 											?>
 											<input type="checkbox" value="" class="" id="checkAll" />
@@ -185,7 +189,7 @@
 						        </thead>
 						        <tbody>
 									<?php
-									$n=1;	
+									$n=1;
 									foreach($invoice_details as $in){
 										?>
 										<div class="body-overlay"><div><img src="{{ url('/assets/img/loder/loading.gif') }}" width="64px" height="64px"/></div></div>
@@ -194,7 +198,7 @@
 										<tr>
 						                <td>{{$n}}</td>
 						                <td>{{$in->posttitle}}</td>
-						                <td>{{$in->sellers_name}}</td>	
+						                <td>{{$in->sellers_name}}</td>
 						                <td>
 						                    <div class="input-group">
                                                 {{-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span> --}}
@@ -208,7 +212,7 @@
                                             </div>
 						                </td>
 						                <td>
-						                    <?php 
+						                    <?php
 															$per_10 = $in->sale_price*10/100;
 															$per_10_03 = $per_10*3/100;
 															// $total_pay += $per_10_03;
@@ -225,18 +229,18 @@
 						                    <input type="text" class="form-control price <?php echo $in->id ?> price<?php echo $in->id ?>" name="price" placeholder="Selling Price" value="{{@$in->sale_price}}" />
 						                    <input type="hidden" class="form-control id <?php echo $in->id ?> id<?php echo $in->id ?>" name="id" value="{{@$in->id}}" />
 						                </td>
-						                
+
 											<?php if(@$in->sale_date=='' || @$in->sale_price=='' ||  @$in->agent_comission=='' ||  @$in->address==''){?>
 										<td>
 												<span class="badge badge-blue">
 						                        Closing<br>Pending
 						                    </span>
 										</td>
-										
+
 											<td>
 												<button class="btn btn-default submit-btn <?php echo $in->id?>" name="submit<?php echo $in->id?>" value="submit<?php echo $in->id?>" type="submit">Save</button>
 											</td>
-										
+
 											<?php
 											}elseif(@$in->payment_status==1){
 											?>
@@ -246,9 +250,9 @@
 						                    </span>
 						                </td>
 						                <td>
-						                    
+
 						                </td>
-										
+
 											<?php
 											}else{
 											?>
@@ -260,7 +264,7 @@
 						                <td>
 						                    <a class="btn-u padding-6" href="{{route('payitnow',$in->id)}}">Pay it now</a>
 						                </td>
-										
+
 						                <td>
 											<input type="checkbox" value="" name="paycheck" class="col-lg-10 form-control reservation paycheck <?php echo $in->id ?> paycheck<?php echo $in->id ?>" />
 						                </td>
@@ -269,9 +273,9 @@
 											}
 										?>
 
-						            </tr>	
+						            </tr>
 									<?php
-								$n=$n+1;	
+								$n=$n+1;
 								}
 									?>
 						            <tr>
@@ -287,7 +291,7 @@
 						                    </span>
 						                </td>
 						                <td>
-						                    
+
 						                </td>
 						            </tr>
 						            <tr>
@@ -405,15 +409,15 @@
 											<?php }?>
 								</form>
 								{{-- <a class="btn-u padding-6" href="{{route('payitnow',$in->id)}}">Pay it now</a> --}}
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- End Profile Content -->			
+			<!-- End Profile Content -->
 		</div>
-	</div>	
-	
+	</div>
+
 
 @endsection
 
@@ -494,7 +498,7 @@
 
 		    onChange: function(option, checked) {
 
-		    	
+
 
             }
 
@@ -506,18 +510,18 @@
 
 			shareproposalpopup($('#praposalid').val(),$('#praposalidrole').val());
 
-		});	
+		});
 
 		$('#searchpost').submit(function(e){
 
 			e.preventDefault();
 
-			
 
-			
-			var date 			= $('#date').val();	
 
-			
+
+			var date 			= $('#date').val();
+
+
 			var usertype 		= $('#usertype').val();
 
 
@@ -551,19 +555,19 @@
 
 					beforeSend: function(){$(".loaderpost").show();},
 
-					success: function(result) {	
+					success: function(result) {
 
 						$(".loaderpost").hide();
 
 						$('#append-post-ajax').html('');
 
-						loadhtml(result,'yes');					
+						loadhtml(result,'yes');
 
 					},
 
-				  	error: function(data) 
+				  	error: function(data)
 
-			    	{	
+			    	{
 
 			    		$(".loaderpost").hide();
 
@@ -609,21 +613,21 @@
 
 	function loadpost(limit) {
 
-		
 
-		var keyword 		= $('#keyword').val();			
 
-		var searchinputtype = $('#searchinputtype').val();			
+		var keyword 		= $('#keyword').val();
 
-		var date 			= $('#date').val();	
+		var searchinputtype = $('#searchinputtype').val();
 
-		var address 		= $('#address').val();		
+		var date 			= $('#date').val();
 
-		var city 			= $('#city').val();	
+		var address 		= $('#address').val();
 
-		var state 			= $('#state').val();	
+		var city 			= $('#city').val();
 
-		var zipcodes 		= $('#zipcodes').val();	
+		var state 			= $('#state').val();
+
+		var zipcodes 		= $('#zipcodes').val();
 
 		var pricerange 		= $('#pricerange').val();
 
@@ -631,7 +635,7 @@
 
 		var cityName 		= $('#cityName').val();
 
-		
+
 
 		var error = true;
 
@@ -663,7 +667,7 @@
 
 				beforeSend: function(){$(".loaderpost").show();},
 
-				success: function(result) {	
+				success: function(result) {
 
 					$(".loaderpost").hide();
 
@@ -671,9 +675,9 @@
 
 				},
 
-			  	error: function(data) 
+			  	error: function(data)
 
-		    	{	
+		    	{
 
 		    		if(data.status=='500'){
 
@@ -761,13 +765,13 @@
 
 							          	}
 
-									 
+
 
 									 if(typeof value.post_view_count != 'undefined' && value.post_view_count != 0 ) {
 
 									htmll +=
 
-										
+
 
 										'<ul class="list-inline">'+
 
@@ -819,7 +823,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -877,7 +881,7 @@
 
 										'</div>';
 
-										
+
 
 										if(value.description){
 
@@ -899,7 +903,7 @@
 
 										'<ul class="list-inline clear-both" style="margin-bottom: 0px;">'+
 
-											'<li><a class="cursor"><strong> Details </strong></a></li>'+									
+											'<li><a class="cursor"><strong> Details </strong></a></li>'+
 
 										'</ul>'+
 
@@ -915,7 +919,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -931,7 +935,7 @@
 
 				$.each( result.result, function( key, value ) {
 
-					
+
 
 					var date = timeDifference(new Date(), new Date(Date.fromISO(value.created_at)));
 
@@ -973,7 +977,7 @@
 
 										'</div>';
 
-										
+
 
 										if(value.message_text){
 
@@ -997,7 +1001,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -1055,7 +1059,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -1079,7 +1083,7 @@
 
 									'<div class="funny-boxes acpost">'+
 
-									
+
 
 										'<div class="funny-boxes-img " >'+
 
@@ -1123,7 +1127,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -1147,7 +1151,7 @@
 
 									'<div class="funny-boxes acpost">'+
 
-									
+
 
 										'<div class="funny-boxes-img " >'+
 
@@ -1191,7 +1195,7 @@
 
 			 		if(msct==0){
 
-	                    $('#append-post-ajax').append(htmll); 
+	                    $('#append-post-ajax').append(htmll);
 
 	                }else{
 
@@ -1241,7 +1245,7 @@
 
 		}else if(perams=='name'){
 
-			
+
 
 			$('#keyword').attr('placeholder','Search seller & buyer by name');
 
@@ -1293,13 +1297,13 @@
 
 		$('#praposalidrole').val(type);
 
-		var keyword = $('#proposalkeyword').val();			
+		var keyword = $('#proposalkeyword').val();
 
-		var address = $('#proposaladdress').val();		
+		var address = $('#proposaladdress').val();
 
-		var date = $('#proposaldate').val();	
+		var date = $('#proposaldate').val();
 
-		
+
 
 		$.ajax({
 
@@ -1317,7 +1321,7 @@
 
 			beforeSend: function(){$(".loadproposalshare").show();},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$(".loadproposalshare").hide();
 
@@ -1335,7 +1339,7 @@
 
 							var asrvfun ='<input type="checkbox" onclick="shareproposal('+value.details_id+','+id+')"  name="proposale-checkox-'+value.details_id+'"><i class="n-p-a"></i>';
 
-						} 
+						}
 
 						var htmll = '<section><label class="checkbox" style="border-bottom: 1px solid #e6e6e6;">'+
 
@@ -1357,13 +1361,13 @@
 
 				}
 
-				
+
 
 			},
 
-		  	error: function(data) 
+		  	error: function(data)
 
-	    	{	
+	    	{
 
 	    		$(".loadproposalshare").hide();
 
@@ -1382,8 +1386,8 @@
 		});
 
 	}
-	
-	
+
+
 
 	function shareproposal(userid,id) {
 
@@ -1397,21 +1401,21 @@
 
 			data: {notification_type : 1,notification_message : '{{ $userdetails->name }} asked questions related to your post `'+userdata.posttitle+'`' ,shared_type:1 ,shared_item_id:id,shared_item_type : 1,shared_item_type_id : userdata.post_id,receiver_id : userdata.details_id,receiver_role: userdata.details_id_role_id,sender_id: '{{ $user->id }}',sender_role : '{{ $user->agents_users_role_id }}',_token : '{{ csrf_token() }}'},
 
-			success: function(result) {	
+			success: function(result) {
 
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" checked onclick="shareproposalremove('+userid+','+id+','+result.data+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="o-p-a"></i>');
 
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});  
+		});
 
 
 
 	}
 
-	function shareproposalremove(userid,id,shared_id) {		
+	function shareproposalremove(userid,id,shared_id) {
 
 		var userdata = shared_proposal_connected_user_list[userid];
 
@@ -1423,15 +1427,15 @@
 
 			data: { id : id, shared_id : shared_id, _token : '{{ csrf_token() }}' },
 
-			success: function(result) {	
+			success: function(result) {
 
 				$('.proposal_share_'+userid+'_'+userdata.details_id_role_id).html('<input type="checkbox" onclick="shareproposal('+userid+','+id+')"  name="proposale-checkox-'+userdata.details_id+'"><i class="n-p-a"></i>');
 
-			},error: function(result) {	
+			},error: function(result) {
 
 			}
 
-		});    
+		});
 
 	}
 
@@ -1469,15 +1473,15 @@
 		// return false;
 		console.log(payArr);
 
-		// $.ajax({				
+		// $.ajax({
 		// 		url: "{{url('/')}}/pay_pendinginvoices",
 		// 		type: 'POST',
 		// 		data:  new FormData(this),//$form.serialize(),
 		// 		beforeSend: function(){$(".body-overlay").show();},
 		// 		processData:false,
 		// 		contentType: false,
-		// 		success: function(result) {	
-					
+		// 		success: function(result) {
+
 		// 			$(".body-overlay").hide();
 		// 			// $('.error-text').text('');
 		// 			// $('#edit-personal-bio input, #edit-personal-bio select, #edit-personal-bio textarea').removeClass('error-border');
@@ -1504,15 +1508,15 @@
 		// 			}
 
 		// 		},
-		// 		error: function(data) 
-		// 		{	
+		// 		error: function(data)
+		// 		{
 		// 			alert('something went wrong');
-		// 		} 	
+		// 		}
 		// 	});
 
 	});
 	$('.submit-btn').on('click',function(e){
-		debugger	
+		debugger
 		// e.preventDedault();
 		e.preventDefault()
 		let cl=$(this).attr('class');
@@ -1538,17 +1542,17 @@ $('#edit-personal-bio').attr('action', '{{route('update_sell')}}');
 $('#edit-personal-bio').attr('method', 'POST');
 $("#edit-personal-bio").submit();
 // 			let cl= $(this).attr("class");
-// 			cl=cl.split(" ");		
+// 			cl=cl.split(" ");
 // 			// var $form = $(e.target),esmsg = $('.message-Professional');
-// 			$.ajax({				
+// 			$.ajax({
 // 				url: "{{url('/')}}/profile/agent/sellDetials",
 // 				type: 'POST',
 // 				data:  new FormData(this),//$form.serialize(),
 // 				beforeSend: function(){$(".body-overlay").show();},
 // 				processData:false,
 // 				contentType: false,
-// 				success: function(result) {	
-					
+// 				success: function(result) {
+
 // 					$(".body-overlay").hide();
 // 					// $('.error-text').text('');
 // 					// $('#edit-personal-bio input, #edit-personal-bio select, #edit-personal-bio textarea').removeClass('error-border');
@@ -1588,8 +1592,8 @@ $("#edit-personal-bio").submit();
 
 // 					console.log(result);
 // 				},
-// 				error: function(data) 
-// 				{	
+// 				error: function(data)
+// 				{
 // 					if(data.status=='500'){
 // 						esmsg.text(data.statusText).css({'color':'red'});
 // 					}else if(data.status=='422'){
@@ -1599,7 +1603,7 @@ $("#edit-personal-bio").submit();
 // 					$('html, body').animate({
 // 						scrollTop: $('.message-Professional').offset().top
 // 					},1000);
-// 				} 	
+// 				}
 // 			});
 		});
 		/* edit edit-prasnol-bio*/

@@ -295,7 +295,8 @@ Route::group(['middleware' => ['auth', 'lang', 'sTime', 'check-user-activation']
 
 	/*applied post and agents */
 	Route::get('/{name}/applied/post/{status}', 'Administrator\ProfileController@AppliedPostForAgents')->name("appliedposts");
-Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
+	Route::post('/searchbydate', 'Administrator\ProfileController@AppliedPostForAgentsByDate')->name("appliedpostsbydate");
+    Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 	Route::get('/applied/post/list/get/{limit}/{userid}/{roleid}/{selected}/{user_role_id?}', 'Administrator\ProfileController@AppliedPostListGetForAgents');
 
 	/* connected jobs/post for agents*/

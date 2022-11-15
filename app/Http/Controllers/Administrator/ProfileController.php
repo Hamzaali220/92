@@ -466,7 +466,7 @@ class ProfileController extends Controller
             $userDetails = $user1->getuserdetailsByAny(array('agents_users_details.details_id' => $user->id));
             // dd($userDetails);
             $view['userdetails'] = $userDetails;
-            
+
             $view['state']     = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
             $view['city']     = $state->getCityByAny(array('is_deleted' => '0'));
             $user_city     = $state->getCityByAny(array('is_deleted' => '0', 'city_id' => $userDetails->city_id));
@@ -843,7 +843,7 @@ class ProfileController extends Controller
         );
 
         DB::table('agents_selldetails')->insertGetId($insert_arr);
-    
+
     }
 
 
@@ -863,7 +863,7 @@ class ProfileController extends Controller
 
         DB::table('agents_selldetails')->where($where)->update($insert_arr);
         return redirect()->back();
-    
+
     }
 
     /* For get public user */
@@ -878,6 +878,45 @@ class ProfileController extends Controller
 
 
     /* For applied post for agents */
+    public function AppliedPostForAgentsByDate(Request $request){
+        // get last 10days data
+        // $lastTenDaysRecord = ModelName::whereDateBetween('created_at',(new Carbon)->subDays(10)->startOfDay()->toDateString(),(new Carbon)->now()->endOfDay()->toDateString() )->get();
+        // get last 30days
+        // $lastThirtyDaysRecord = ModelName::whereDateBetween('created_at',(new Carbon)->subDays(30)->startOfDay()->toDateString(),(new Carbon)->now()->endOfDay()->toDateString() )->get();
+        if (Auth::user()) {
+            $view = array();
+            $view['user'] = $user = Auth::user();
+            $view['userdetails'] = $userdetails = Userdetails::find($user->id);
+            $date = explode("-",$request->date);
+            $date = str_replace(' ','',$date);
+            $datefrom = $date[0];
+            $dateto = $date[1];
+            $startdate = date("Y-m-d", strtotime($datefrom) );
+            $enddate = date("Y-m-d", strtotime($dateto) );
+            $invoice_details = DB::table('agents_selldetails as as')
+            ->whereBetween('created_ts', [$startdate, $enddate])
+            ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
+            ->join('agents_users as au', 'au.id', '=', 'as.agent_id')
+            ->select(
+                'as.sellers_name',
+                'as.id',
+                'as.address',
+                'as.payment_status',
+                'as.receipt_url',
+                'as.sale_date',
+                'as.sale_price',
+                'ap.posttitle',
+                'as.status',
+                "as.agent_comission"
+            )
+            ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
+            ->where('au.agents_users_role_id', '=', $request->usertype)
+            ->get();
+            $view['invoice_details'] = $invoice_details;
+            $view['post_status'] = $request->status;
+            return view('dashboard.user.agents.appliedpost', $view);
+        }
+    }
     public function AppliedPostForAgents($agentname,$status)
     {
 
@@ -892,20 +931,20 @@ class ProfileController extends Controller
                 $invoice_details = DB::table('agents_selldetails as as')
                 ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
                 ->select(
-                    'as.sellers_name', 
-                    'as.id', 
-                    'as.address', 
-                    'as.payment_status', 
-                    'as.receipt_url', 
-                    'as.sale_date', 
+                    'as.sellers_name',
+                    'as.id',
+                    'as.address',
+                    'as.payment_status',
+                    'as.receipt_url',
+                    'as.sale_date',
                     'as.sale_price',
                     'ap.posttitle',
                     'as.status',
                     "as.agent_comission"
                 )
                 ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
-                ->get();  
-                $view['invoice_details'] = $invoice_details;  
+                ->get();
+                $view['invoice_details'] = $invoice_details;
             }
             else if($status==1){
                 $state=new State;
@@ -914,12 +953,12 @@ class ProfileController extends Controller
                 $invoice_details = DB::table('agents_selldetails as as')
                 ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
                 ->select(
-                    'as.sellers_name', 
-                    'as.id', 
-                    'as.address', 
-                    'as.payment_status', 
-                    'as.receipt_url', 
-                    'as.sale_date', 
+                    'as.sellers_name',
+                    'as.id',
+                    'as.address',
+                    'as.payment_status',
+                    'as.receipt_url',
+                    'as.sale_date',
                     'as.sale_price',
                     'ap.posttitle',
                     'as.status',
@@ -930,22 +969,22 @@ class ProfileController extends Controller
                 ->where('as.agent_comission','!=', '')
                 ->where('as.sale_date','!=', '')
                 ->where('as.sale_price','!=', '')
-                ->get();  
-                $view['invoice_details'] = $invoice_details;  
+                ->get();
+                $view['invoice_details'] = $invoice_details;
             }
             else{
                 $state=new State;
                 $view['city']        = $state->getCityByAny(array('is_deleted' => '0'));
                 $view['state']       = $state->getStateByAny(array('is_deleted' => '0', 'status' => '1'));
-            $invoice_details = DB::table('agents_selldetails as as')
+                $invoice_details = DB::table('agents_selldetails as as')
                 ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
                 ->select(
-                    'as.sellers_name', 
-                    'as.id', 
-                    'as.address', 
-                    'as.payment_status', 
-                    'as.receipt_url', 
-                    'as.sale_date', 
+                    'as.sellers_name',
+                    'as.id',
+                    'as.address',
+                    'as.payment_status',
+                    'as.receipt_url',
+                    'as.sale_date',
                     'as.sale_price',
                     'ap.posttitle',
                     'as.status',
@@ -965,7 +1004,7 @@ class ProfileController extends Controller
     /* For connected jobs for agents */
     public function ConnectedJobsForAgents()
     {
-        
+
         if (Auth::user()) {
             $view = array();
             $view['user'] = $user = Auth::user();
