@@ -896,7 +896,6 @@ class ProfileController extends Controller
             $invoice_details = DB::table('agents_selldetails as as')
             ->whereBetween('created_ts', [$startdate, $enddate])
             ->join('agents_posts as ap', 'as.post_id', '=', 'ap.post_id')
-            ->join('agents_users as au', 'au.id', '=', 'as.agent_id')
             ->select(
                 'as.sellers_name',
                 'as.id',
@@ -910,7 +909,7 @@ class ProfileController extends Controller
                 "as.agent_comission"
             )
             ->where(['ap.applied_user_id' => $user->id, 'as.status' => 1])
-            ->where('au.agents_users_role_id', '=', $request->usertype)
+            ->where('ap.agents_users_role_id', '=', $request->usertype)
             ->get();
             $view['invoice_details'] = $invoice_details;
             $view['post_status'] = $request->status;
